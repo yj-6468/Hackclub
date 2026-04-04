@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "LexHack '26 — Technically Impressive. Fundamentally Unnecessary.",
     description:
-      "Lexington's first-ever high school hackathon. 48 hours. 40 hackers. Infinite chaos. June 2026 · Free · Cary Memorial Library.",
+      "Lexington's first-ever high school hackathon. 48 hours. Infinite ideas June 2026 · Free · Cary Memorial Library.",
     type: "website",
     locale: "en_US",
     images: [
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "LexHack '26",
-    description: "Technically impressive. Fundamentally unnecessary.",
+    description: "Technically impressive BUT Fundamentally unnecessary.",
     images: ["/og-image.png"],
   },
   robots: "index, follow",

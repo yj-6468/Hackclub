@@ -21,7 +21,7 @@ export default function Home() {
       "color: #7C3AED; font-size: 24px; font-weight: bold; font-family: monospace;"
     );
     console.log(
-      "%cTechnically impressive. Fundamentally unnecessary.",
+      "%cTechnically impressive BUT Fundamentally unnecessary.",
       "color: #10B981; font-size: 14px; font-family: monospace;"
     );
     console.log(

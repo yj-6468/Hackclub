@@ -4,28 +4,28 @@ import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
 const day1 = [
-  { time: "9:00 AM", event: "Doors open, check-in", icon: "🚪", type: "logistics" },
-  { time: "9:30 AM", event: "Opening Ceremony", icon: "🎤", type: "ceremony" },
-  { time: "10:15 AM", event: "Team formation + brainstorming", icon: "🤝", type: "logistics" },
-  { time: "10:45 AM", event: "Hacking begins!", icon: "⚡", type: "milestone" },
-  { time: "11:30 AM", event: "Workshop 1: Getting Started", icon: "📚", type: "workshop" },
-  { time: "12:30 PM", event: "Lunch", icon: "🍕", type: "food" },
-  { time: "1:15 PM", event: "Workshop 2: Technical Deep-Dive", icon: "🔬", type: "workshop" },
-  { time: "2:00 PM", event: "Mentor office hours", icon: "💬", type: "mentorship" },
-  { time: "3:30 PM", event: "Snacks + energy break", icon: "🍫", type: "food" },
-  { time: "5:00 PM", event: "Day 1 ends at library — continue from home via Discord", icon: "🏠", type: "logistics" },
-  { time: "8:00 PM", event: "Virtual check-in on Discord", icon: "💻", type: "virtual" },
-  { time: "11:00 PM", event: "Midnight Cursed Hour on Discord", icon: "🌙", type: "virtual" },
+  { time: "10:00 AM", event: "Doors open, check-in, name tags, t-shirts", icon: "🚪", type: "logistics" },
+  { time: "10:30 AM", event: "Opening Ceremony — welcome, rules, theme, sponsor shoutouts, example projects", icon: "🎤", type: "ceremony" },
+  { time: "11:00 AM", event: "Team formation + brainstorming (ice-breakers, idea pitching)", icon: "🤝", type: "logistics" },
+  { time: "11:30 AM", event: "Hacking begins!", icon: "⚡", type: "milestone" },
+  { time: "12:00 PM", event: "Workshop: Getting Started (Git, APIs, project scaffolding for beginners)", icon: "📚", type: "workshop" },
+  { time: "12:45 PM", event: "Lunch", icon: "🍕", type: "food" },
+  { time: "1:30 PM", event: "Mentor office hours (15-min slots)", icon: "💬", type: "mentorship" },
+  { time: "2:30 PM", event: "Snacks + quick progress check-in (30-second update from each team)", icon: "🍫", type: "food" },
+  { time: "3:00 PM", event: "Library day ends — teams continue hacking from home", icon: "🏠", type: "logistics" },
+  { time: "7:00 PM", event: "Virtual check-in on Discord (optional — share screenshots, hang out)", icon: "💻", type: "virtual" },
+  { time: "11:00 PM", event: "Midnight showcase on Discord (optional — share your most unhinged progress)", icon: "🌙", type: "virtual" },
 ];
 
 const day2 = [
-  { time: "9:00 AM", event: "Doors open, breakfast", icon: "🍳", type: "food" },
-  { time: "10:00 AM", event: "Final hacking sprint", icon: "🏃", type: "milestone" },
-  { time: "12:00 PM", event: "Lunch", icon: "🍕", type: "food" },
+  { time: "1:00 PM", event: "Doors open, snacks, final hacking sprint", icon: "🏃", type: "milestone" },
   { time: "1:30 PM", event: "Submissions close (Devpost)", icon: "🔒", type: "milestone" },
-  { time: "1:45 PM", event: "Judging begins (science-fair style)", icon: "⚖️", type: "ceremony" },
-  { time: "3:30 PM", event: "Closing Ceremony + prizes", icon: "🏆", type: "ceremony" },
-  { time: "5:00 PM", event: "Event ends", icon: "👋", type: "logistics" },
+  { time: "1:45 PM", event: "Demo prep — practice pitches, set up presentations", icon: "📝", type: "logistics" },
+  { time: "2:15 PM", event: "Presentations begin (5 min demo + 2 min Q&A per team)", icon: "🎤", type: "ceremony" },
+  { time: "3:30 PM", event: "Voting — judges + participants fill out scoring sheets", icon: "⚖️", type: "ceremony" },
+  { time: "3:45 PM", event: "Score tallying — photo slideshow while organizers calculate", icon: "📸", type: "logistics" },
+  { time: "4:00 PM", event: "Closing Ceremony — winners announced, prizes, sponsor thanks, group photo", icon: "🏆", type: "ceremony" },
+  { time: "5:00 PM", event: "Event ends, cleanup", icon: "👋", type: "logistics" },
 ];
 
 const typeColors: Record<string, string> = {
@@ -91,9 +91,6 @@ export default function Schedule() {
             48 Hours of{" "}
             <span className="gradient-text">Organized Chaos</span>
           </h2>
-          <p className="text-zinc-400 text-lg">
-            Every minute is accounted for. (The chaos is scheduled too.)
-          </p>
         </motion.div>
 
         {/* Day toggle */}
@@ -113,10 +110,7 @@ export default function Schedule() {
                   : "text-zinc-400 hover:text-white"
               }`}
             >
-              Day {day} — {day === 1 ? "Saturday" : "Sunday"}
-              {day === 1 && (
-                <span className="ml-2 text-xs font-mono opacity-70">(+ virtual night)</span>
-              )}
+              Day {day} — {day === 1 ? "Saturday · 10 AM – 3 PM" : "Sunday · 1 PM – 5 PM"}
             </button>
           ))}
         </motion.div>

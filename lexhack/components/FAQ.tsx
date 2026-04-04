@@ -14,7 +14,7 @@ const faqs = [
   },
   {
     q: "What should I bring?",
-    a: "Your laptop, your charger, and your curiosity. We provide food, WiFi, power strips, and good vibes. Some people bring a second monitor or a mechanical keyboard. Bring a hoodie — libraries get cold.",
+    a: "Your laptop, your charger, and your curiosity. We provide food, WiFi, power strips, and good vibes. Some people bring a second monitor or a mechanical keyboard.",
   },
   {
     q: "How do teams work?",
@@ -22,11 +22,11 @@ const faqs = [
   },
   {
     q: "Is it really free?",
-    a: "Yes. Completely free. Food, swag, workshops, mentorship — all included, no cost to you. LexHack is organized by Hack Club @ Lexington High School and fiscally sponsored by The Hack Foundation, a 501(c)(3) nonprofit.",
+    a: "Yes. Completely free. Food, swag, workshops, mentorship — all included, no cost to you. LexHack is organized by Hack Club @ Lexington High School and fiscally sponsored by The Hack Foundation, a 501(c)(3) nonprofit and other companies as well.",
   },
   {
     q: "What's the 'cursed' theme about?",
-    a: "You build apps that are technically excellent but deliberately pointless or absurd. Think: real engineering, zero utility. A calculator that's always wrong. A weather app for yesterday. A social network for houseplants. The goal is creative engineering, not a startup pitch.",
+    a: "You build apps that are technically complicated but deliberately pointless or absurd. The goal is creative engineering.",
   },
   {
     q: "Do I need to stay overnight?",
@@ -37,8 +37,8 @@ const faqs = [
     a: "Absolutely. We have adult organizers present at all times, follow Hack Club's Code of Conduct, and the event is held at Cary Memorial Library — a trusted, public space. Your student is in good hands. Also they'll probably learn more in 48 hours here than in a month of most classes.",
   },
   {
-    q: "Who's organizing this?",
-    a: "Hack Club @ Lexington High School — a student-run coding club affiliated with Hack Club, a global network of high school coding clubs. LexHack is fiscally sponsored by The Hack Foundation, a 501(c)(3) nonprofit organization.",
+    q: "Is the use of AI allowed?",
+    a: "AI is fully allowed and encouraged. AI tools are part of how people build software now. There are no restrictions on AI usage at LexHack. We care about what you ship, not how you ship it",
   },
 ];
 
