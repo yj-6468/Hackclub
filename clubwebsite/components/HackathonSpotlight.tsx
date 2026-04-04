@@ -70,7 +70,7 @@ export default function HackathonSpotlight() {
                   ))}
                 </div>
                 <Link
-                  href="http://localhost:3000"
+                  href="https://lexhack.hackclublhs.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full px-6 py-3.5 bg-[#EC3750] text-white rounded-xl font-body font-semibold text-center hover:bg-[#d42f45] transition-all hover:scale-105 shadow-lg shadow-red-900/30"

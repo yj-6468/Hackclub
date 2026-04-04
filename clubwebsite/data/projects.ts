@@ -13,7 +13,7 @@ export const projects: Project[] = [
     title: "LexHack '26",
     description:
       "Lexington's first-ever student hackathon. 48 hours and infinite ideas. Organized entirely by LHS students.",
-    link: "http://localhost:3000",
+    link: "https://lexhack.hackclublhs.com",
     linkLabel: "Visit LexHack →",
     emoji: "🚀",
     tag: "Local Event",
