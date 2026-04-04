@@ -61,7 +61,6 @@ function PrizeCard({ prize, index }: { prize: typeof prizes[0]; index: number })
         <h3 className={`font-grotesk font-bold text-lg text-white mb-0.5 ${prize.highlight ? "text-xl" : ""}`}>
           {prize.title}
         </h3>
-        <p className="text-sm text-zinc-500 font-medium">{prize.subtitle}</p>
       </div>
 
       <p className="text-zinc-400 text-sm leading-relaxed flex-1">{prize.desc}</p>
