@@ -88,7 +88,9 @@ export default function Navbar() {
         {/* CTA */}
         <div className="hidden md:flex items-center gap-3">
           <a
-            href="#"
+            href="https://forms.gle/32xyrnJxHYpWm1937"
+            target="_blank"
+            rel="noopener noreferrer"
             className="px-4 py-2 rounded-lg bg-[#7C3AED] hover:bg-[#6D28D9] text-white text-sm font-semibold transition-all duration-200 glow-purple"
           >
             Register Free
@@ -132,7 +134,9 @@ export default function Navbar() {
               ))}
               <li className="mt-2">
                 <a
-                  href="#"
+                  href="https://forms.gle/32xyrnJxHYpWm1937"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="block text-center px-4 py-3 rounded-lg bg-[#7C3AED] text-white text-sm font-semibold"
                 >
                   Register Free

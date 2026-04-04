@@ -78,7 +78,7 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="font-grotesk text-xl sm:text-2xl md:text-3xl text-zinc-300 mb-4 italic"
         >
-          &ldquo;Technically impressive. Fundamentally unnecessary.&rdquo;
+          &ldquo;Technically impressive BUT Fundamentally unnecessary.&rdquo;
         </motion.p>
 
         {/* One-liner */}
@@ -88,7 +88,7 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="text-zinc-400 text-base sm:text-lg mb-4 max-w-2xl mx-auto"
         >
-          48 hours. 40 hackers.
+          48 hours. Infinite ideas.
         </motion.p>
 
         {/* Date & Location */}
@@ -117,7 +117,9 @@ export default function Hero() {
           className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
         >
           <a
-            href="#"
+            href="https://forms.gle/32xyrnJxHYpWm1937"
+            target="_blank"
+            rel="noopener noreferrer"
             className="w-full sm:w-auto px-8 py-4 rounded-xl bg-[#7C3AED] hover:bg-[#6D28D9] text-white font-grotesk font-bold text-lg transition-all duration-200 glow-purple text-center"
           >
             Register Now — It&apos;s Free

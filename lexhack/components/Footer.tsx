@@ -26,7 +26,7 @@ export default function Footer() {
             </h4>
             <ul className="flex flex-col gap-2">
               {[
-                { label: "Register", href: "#" },
+                { label: "Register", href: "https://forms.gle/32xyrnJxHYpWm1937" }, 
                 { label: "Schedule", href: "#schedule" },
                 { label: "Prizes", href: "#prizes" },
                 { label: "FAQ", href: "#faq" },
@@ -72,8 +72,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="pt-8 border-t border-white/5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-          <div className="flex flex-col gap-1">
+        <div className="pt-8 border-t border-white/5 flex flex-col gap-1">
             <p className="text-zinc-600 text-xs">
               Organized by{" "}
               <span className="text-zinc-400">Hack Club @ Lexington High School</span>
@@ -90,10 +89,6 @@ export default function Footer() {
               </a>
               , a 501(c)(3) nonprofit · EIN: 81-2908499
             </p>
-          </div>
-          <p className="text-zinc-700 text-xs">
-            Made with 💜 in Lexington, MA
-          </p>
         </div>
       </div>
     </footer>

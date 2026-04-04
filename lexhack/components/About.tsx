@@ -5,12 +5,11 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 
 const cursedProjects = [
-  { emoji: "🧮", title: "Always Wrong Calculator", desc: "Off by a random amount every time. Mathematically cursed." },
-  { emoji: "🌦", title: "Yesterday's Weather App", desc: "Hyper-accurate. Just 24 hours late. Every single time." },
-  { emoji: "✅", title: "Infinite To-Do List", desc: "Completing a task adds two more. You will never be done." },
-  { emoji: "🌿", title: "Houseplant Social Network", desc: "Fern just posted. Cactus liked it. Orchid is having drama." },
-  { emoji: "🎵", title: "1.1x Spotify Clone", desc: "Every song, slightly too fast. Nobody asked for this." },
-  { emoji: "🗺", title: "Navigation That Argues", desc: "It knows the way. It just disagrees with your route." },
+  { emoji: "🧦", title: "Sock Pairing Recommendation Engine", desc: "Computer vision scans your laundry pile and ranks potential pairings via similarity search presented as a Tinder-style swipe interface." },
+  { emoji: "🧊", title: "Fridge Door Closing Consultant", desc: "A voice assistant detects the fridge is open via sensor fusion and delivers a long, eloquent, citation-heavy monologue on why you should close it." },
+  { emoji: "🖋", title: "LLM Font Debate Engine", desc: "Multiple AI agents with distinct personalities argue over whether your document should use Inter, Helvetica, or Times New Roman. Footnotes included. No consensus reached." },
+  { emoji: "🫩", title: "Procrastination Analytics Dashboard", desc: "Tracks tab switching, idle time, typing bursts, and fake productivity events in real time." },
+  { emoji: "🌐", title: "Social Network for Browser Tabs", desc: "Tabs can follow, block, or endorse each other based on shared themes and detected emotional energy. Your Wikipedia tab and your Twitter tab are not getting along." },
 ];
 
 function FadeIn({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
@@ -23,6 +22,7 @@ function FadeIn({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
       initial={{ opacity: 0, y: 30 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, delay, ease: "easeOut" }}
+      className="h-full"
     >
       {children}
     </motion.div>
@@ -77,8 +77,8 @@ export default function About() {
                 The Purpose is Deliberately Absurd
               </h3>
               <p className="text-zinc-400 leading-relaxed">
-                But it has to be useless. Gloriously, intentionally useless. No startup pitches.
-                No &quot;it solves a real problem.&quot; We&apos;re here for chaos, creativity, and cursed ideas
+                But it has to be useless.
+                No &quot;it solves a real problem.&quot; We&apos;re here for chaos, creativity, and inverted ideas
                 executed with technical excellence.
               </p>
             </div>
@@ -97,8 +97,7 @@ export default function About() {
               This is Lexington&apos;s{" "}
               <strong className="text-white">first-ever hackathon.</strong>{" "}
               Participants of LexHack &apos;26 are founding something that could become a Lexington tradition
-              for years to come. No pressure.{" "}
-              <span className="text-[#10B981]">(okay, some pressure)</span>
+              for years to come.{" "}
             </p>
           </div>
         </FadeIn>
@@ -108,16 +107,15 @@ export default function About() {
           <div className="text-center mb-10">
             <h3 className="font-grotesk font-bold text-3xl sm:text-4xl text-white mb-3">
               Example Projects{" "}
-              <span className="font-mono text-[#10B981] text-2xl">(from our cursed imagination)</span>
+              <span className="font-mono text-[#10B981] text-2xl">(from our imagination)</span>
             </h3>
-            <p className="text-zinc-500">Your submission should be at least this deranged.</p>
           </div>
         </FadeIn>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 items-stretch">
           {cursedProjects.map((p, i) => (
             <FadeIn key={p.title} delay={i * 0.07}>
-              <div className="glass-card rounded-xl p-6 group cursor-default">
+              <div className="glass-card rounded-xl p-6 group cursor-default h-full">
                 <div className="text-3xl mb-3 group-hover:scale-110 transition-transform duration-200 inline-block">
                   {p.emoji}
                 </div>

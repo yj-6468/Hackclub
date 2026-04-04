@@ -6,51 +6,26 @@ import { motion, useInView } from "framer-motion";
 const prizes = [
   {
     emoji: "🏆",
-    title: "Most Cursed",
-    subtitle: "Grand Prize",
+    title: "Grand Prize",
     desc: "The ultimate honor. Your project is so gloriously useless it transcends all reason. Sponsor-funded hardware awaits.",
     highlight: true,
     badge: "Grand Prize TBA 👀",
   },
   {
-    emoji: "⚙️",
-    title: "Best Technical Execution",
-    subtitle: "on Something Terrible",
-    desc: "You built something technically impressive. It just happens to be completely pointless. Respect.",
-    highlight: false,
-  },
-  {
     emoji: "📱",
     title: "Most Likely to Go Viral",
-    subtitle: "for the wrong reasons",
-    desc: "The project that, when shown to anyone, causes them to immediately text three people about it.",
-    highlight: false,
-  },
-  {
-    emoji: "🤔",
-    title: "Cursed But... Actually Useful?",
-    subtitle: "Accidental innovation",
-    desc: "You tried to build something useless and accidentally created something people might actually use. Disqualified from spirit but rewarded anyway.",
+    desc: "The project that, when shown to anyone, causes them to immediately try it out.",
     highlight: false,
   },
   {
     emoji: "😂",
     title: "Best Demo Performance",
-    subtitle: "Stage presence award",
-    desc: "Judging day is a performance. You brought the energy, the bit, the chaos. The project almost doesn't matter.",
-    highlight: false,
-  },
-  {
-    emoji: "👥",
-    title: "People's Choice",
-    subtitle: "Peer-voted",
-    desc: "Your fellow hackers vote. Democracy decides. The people have spoken and they want chaos.",
+    desc: "Judging day is a performance. You brought the energy, the bit, the chaos.",
     highlight: false,
   },
   {
     emoji: "🌟",
     title: "Best First-Time Hacker",
-    subtitle: "Beginner's prize",
     desc: "Your first hackathon, your first project, your first taste of building something real. We celebrate the beginning.",
     highlight: false,
   },
@@ -128,7 +103,7 @@ export default function Prizes() {
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
+        <div className="grid sm:grid-cols-2 gap-4 mb-12 max-w-4xl mx-auto">
           {prizes.map((prize, i) => (
             <PrizeCard key={prize.title} prize={prize} index={i} />
           ))}
