@@ -134,7 +134,7 @@ export default function FAQ() {
           <p className="text-zinc-500 text-sm">
             Still have questions?{" "}
             <a
-              href="mailto:lexhack26@gmail.com"
+              href="mailto:lexhackclub@gmail.com"
               className="text-[#7C3AED] hover:text-[#9F67FF] underline underline-offset-2 transition-colors"
             >
               Email us
