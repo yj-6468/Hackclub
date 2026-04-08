@@ -125,7 +125,7 @@ export default function Hero() {
             Register Now — It&apos;s Free
           </a>
           <a
-            href="mailto:lexhack26@gmail.com"
+            href="mailto:lexhackclub@gmail.com"
             className="w-full sm:w-auto px-8 py-4 rounded-xl border border-white/20 hover:border-white/40 hover:bg-white/5 text-white font-grotesk font-semibold text-lg transition-all duration-200 text-center"
           >
             Become a Sponsor →

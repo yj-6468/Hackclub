@@ -119,7 +119,7 @@ export default function Prizes() {
             <span className="text-white font-medium">Prize pool is sponsor-funded.</span>{" "}
             The more sponsors we get, the better the prizes.{" "}
             <a
-              href="mailto:lexhack26@gmail.com"
+              href="mailto:lexhackclub@gmail.com"
               className="text-[#7C3AED] hover:text-[#9F67FF] underline underline-offset-2 transition-colors"
             >
               Want to be a sponsor?
