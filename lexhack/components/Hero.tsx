@@ -118,9 +118,11 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] as const }}
           className="mt-6 sm:mt-8 text-lg sm:text-xl text-text-body max-w-2xl mx-auto leading-relaxed"
         >
-          LexHack &rsquo;26 is Lexington&rsquo;s first hackathon. Pick a real
-          person&mdash;or imagine one. Understand their problem. Spend a week
-          building something just for them.
+          LexHack &rsquo;26 is Lexington&rsquo;s first hackathon.
+          <br />
+          Pick a real person or imagine one. Understand their problem.
+          <br />
+          Spend a week building something just for them.
         </motion.p>
 
         <motion.div

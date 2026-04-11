@@ -21,7 +21,7 @@ export default function StarField({ count = 80, className = "" }: StarFieldProps
       id: i,
       x: r(rng(i * 3) * 100),
       y: r(rng(i * 3 + 1) * 100),
-      size: rng(i * 3 + 2) < 0.15 ? 2.5 : rng(i * 3 + 2) < 0.4 ? 1.5 : 1,
+      size: rng(i * 3 + 2) < 0.15 ? 3.5 : rng(i * 3 + 2) < 0.4 ? 2.5 : 1.5,
       twinkleClass:
         rng(i * 7) < 0.33
           ? "star-twinkle-1"
@@ -29,7 +29,7 @@ export default function StarField({ count = 80, className = "" }: StarFieldProps
           ? "star-twinkle-2"
           : "star-twinkle-3",
       delay: r(rng(i * 11) * 6),
-      opacity: rng(i * 13) < 0.3 ? 1 : rng(i * 13) < 0.6 ? 0.75 : 0.55,
+      opacity: rng(i * 13) < 0.3 ? 1 : rng(i * 13) < 0.6 ? 0.9 : 0.7,
     }));
   }, [count]);
 
