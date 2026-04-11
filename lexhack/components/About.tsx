@@ -1,130 +1,211 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import StarField from "./StarField";
 
-const cursedProjects = [
-  { emoji: "🧦", title: "Sock Pairing Recommendation Engine", desc: "Computer vision scans your laundry pile and ranks potential pairings via similarity search presented as a Tinder-style swipe interface." },
-  { emoji: "🧊", title: "Fridge Door Closing Consultant", desc: "A voice assistant detects the fridge is open via sensor fusion and delivers a long, eloquent, citation-heavy monologue on why you should close it." },
-  { emoji: "🖋", title: "LLM Font Debate Engine", desc: "Multiple AI agents with distinct personalities argue over whether your document should use Inter, Helvetica, or Times New Roman. Footnotes included. No consensus reached." },
-  { emoji: "🫩", title: "Procrastination Analytics Dashboard", desc: "Tracks tab switching, idle time, typing bursts, and fake productivity events in real time." },
-  { emoji: "🌐", title: "Social Network for Browser Tabs", desc: "Tabs can follow, block, or endorse each other based on shared themes and detected emotional energy. Your Wikipedia tab and your Twitter tab are not getting along." },
+const personCards = [
+  {
+    icon: "👩‍🏫",
+    title: "A teacher",
+    description: "who spends 3 hours a week on attendance paperwork",
+    constellation: [
+      { x: 10, y: 10 },
+      { x: 30, y: 5 },
+      { x: 45, y: 18 },
+      { x: 25, y: 30 },
+    ],
+  },
+  {
+    icon: "🏪",
+    title: "A small business owner",
+    description: "who tracks inventory with sticky notes",
+    constellation: [
+      { x: 8, y: 15 },
+      { x: 20, y: 5 },
+      { x: 40, y: 10 },
+      { x: 35, y: 28 },
+      { x: 15, y: 25 },
+    ],
+  },
+  {
+    icon: "👨‍👧",
+    title: "A parent",
+    description: "juggling 4 kids' schedules across 3 different apps",
+    constellation: [
+      { x: 15, y: 8 },
+      { x: 35, y: 5 },
+      { x: 42, y: 22 },
+      { x: 20, y: 28 },
+    ],
+  },
 ];
 
-function FadeIn({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
+const stagger = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.12 },
+  },
+};
 
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 30 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, delay, ease: "easeOut" }}
-      className="h-full"
-    >
-      {children}
-    </motion.div>
-  );
-}
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const },
+  },
+};
 
 export default function About() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
   return (
-    <section id="about" className="relative py-24 sm:py-32 overflow-hidden">
-      {/* Background accent */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-purple-900/10 rounded-full blur-3xl pointer-events-none" />
+    <section id="about" className="relative py-24 sm:py-32 bg-background-alt overflow-hidden">
+      <StarField count={50} />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <FadeIn>
-          <div className="text-center mb-16">
-            <span className="font-mono text-sm text-[#10B981] tracking-widest uppercase mb-4 block">
-              // what is this?
-            </span>
-            <h2 className="font-grotesk font-bold text-4xl sm:text-5xl md:text-6xl text-white mb-6">
-              What is{" "}
-              <span className="gradient-text">LexHack</span>?
+      <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8" ref={ref}>
+        <motion.div
+          variants={stagger}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
+          <motion.div variants={fadeUp} className="max-w-3xl">
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-foreground leading-tight">
+              Every project starts
+              <span className="text-primary"> with a person</span>
             </h2>
-            <p className="text-zinc-400 text-lg sm:text-xl max-w-3xl mx-auto leading-relaxed">
-              A <strong className="text-white">hackathon</strong> is a collaborative event where you build a software
-              project from scratch in a set amount of time. LexHack takes that premise and adds one twist:{" "}
-              <strong className="text-[#10B981]">your project must be as absurd as possible.</strong>
+            <p className="mt-6 text-lg text-text-body leading-relaxed">
+              Every team picks one real person&mdash;someone they know, or a
+              realistic persona&mdash;and builds a custom tool for their specific
+              problem. Your mom who manages schedules on sticky notes. Your
+              teacher who spends hours on attendance. A freelancer who loses
+              track of invoices. The project has a real user before a single line
+              of code is written.
             </p>
-          </div>
-        </FadeIn>
+          </motion.div>
 
-        {/* Two-column explainer */}
-        <div className="grid md:grid-cols-2 gap-6 mb-20">
-          <FadeIn delay={0.1}>
-            <div className="glass-card rounded-2xl p-8 h-full">
-              <div className="text-4xl mb-4">⚙️</div>
-              <h3 className="font-grotesk font-bold text-2xl text-white mb-3">
-                The Engineering is Real
-              </h3>
-              <p className="text-zinc-400 leading-relaxed">
-                We&apos;re talking actual code, actual databases, actual APIs. Judges evaluate your
-                technical execution — architecture, code quality, implementation difficulty. This
-                isn&apos;t a Scratch project. This is real software engineering.
-              </p>
-            </div>
-          </FadeIn>
-
-          <FadeIn delay={0.2}>
-            <div className="glass-card rounded-2xl p-8 h-full border-[#10B981]/20">
-              <div className="text-4xl mb-4">🤡</div>
-              <h3 className="font-grotesk font-bold text-2xl text-white mb-3">
-                The Purpose is Deliberately Absurd
-              </h3>
-              <p className="text-zinc-400 leading-relaxed">
-                But it has to be useless.
-                No &quot;it solves a real problem.&quot; We&apos;re here for chaos, creativity, and inverted ideas
-                executed with technical excellence.
-              </p>
-            </div>
-          </FadeIn>
-        </div>
-
-        {/* History badge */}
-        <FadeIn delay={0.1}>
-          <div className="relative rounded-2xl border border-[#7C3AED]/40 bg-[#7C3AED]/5 p-8 mb-20 text-center overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-r from-[#7C3AED]/5 via-transparent to-[#10B981]/5 pointer-events-none" />
-            <span className="text-4xl block mb-3">🏛</span>
-            <h3 className="font-grotesk font-bold text-2xl sm:text-3xl text-white mb-2">
-              You&apos;re Making History
-            </h3>
-            <p className="text-zinc-400 max-w-2xl mx-auto text-lg">
-              This is Lexington&apos;s{" "}
-              <strong className="text-white">first-ever hackathon.</strong>{" "}
-              Participants of LexHack &apos;26 are founding something that could become a Lexington tradition
-              for years to come.{" "}
-            </p>
-          </div>
-        </FadeIn>
-
-        {/* Cursed project ideas */}
-        <FadeIn>
-          <div className="text-center mb-10">
-            <h3 className="font-grotesk font-bold text-3xl sm:text-4xl text-white mb-3">
-              Example Projects{" "}
-              <span className="font-mono text-[#10B981] text-2xl">(from our imagination)</span>
-            </h3>
-          </div>
-        </FadeIn>
-
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 items-stretch">
-          {cursedProjects.map((p, i) => (
-            <FadeIn key={p.title} delay={i * 0.07}>
-              <div className="glass-card rounded-xl p-6 group cursor-default h-full">
-                <div className="text-3xl mb-3 group-hover:scale-110 transition-transform duration-200 inline-block">
-                  {p.emoji}
-                </div>
-                <h4 className="font-grotesk font-semibold text-white mb-2">{p.title}</h4>
-                <p className="text-zinc-500 text-sm leading-relaxed">{p.desc}</p>
+          {/* Two Paths */}
+          <motion.div
+            variants={fadeUp}
+            className="mt-16 grid md:grid-cols-2 gap-6"
+          >
+            <div className="relative p-8 bg-card-bg rounded-2xl border border-card-border hover:border-primary/30 transition-colors">
+              <div className="inline-flex items-center gap-2 px-3 py-1 text-xs font-bold uppercase tracking-wider text-primary bg-primary/10 rounded-full">
+                Path A
               </div>
-            </FadeIn>
-          ))}
-        </div>
+              <h3 className="mt-4 font-display text-xl sm:text-2xl font-bold text-foreground">
+                Build for someone you know
+              </h3>
+              <p className="mt-3 text-text-body leading-relaxed">
+                Pick a real person in your life&mdash;a parent, teacher, coach,
+                neighbor&mdash;and build for their exact problem. They don&rsquo;t
+                have to come to the event, but they&rsquo;re welcome to show up
+                on Demo Day to see what you built.
+              </p>
+              {/* Star accent */}
+              <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-primary/40 star-twinkle-1" />
+            </div>
+
+            <div className="relative p-8 bg-card-bg rounded-2xl border border-card-border hover:border-primary/30 transition-colors">
+              <div className="inline-flex items-center gap-2 px-3 py-1 text-xs font-bold uppercase tracking-wider text-blue-400 bg-blue-400/10 rounded-full">
+                Path B
+              </div>
+              <h3 className="mt-4 font-display text-xl sm:text-2xl font-bold text-foreground">
+                Build for a persona
+              </h3>
+              <p className="mt-3 text-text-body leading-relaxed">
+                Don&rsquo;t have a specific person? That&rsquo;s fine. Define a
+                realistic persona&mdash;&ldquo;a college student who can never
+                find study rooms&rdquo; or &ldquo;an elderly person who
+                struggles with grocery apps.&rdquo; Ground it in reality. The
+                more specific the person feels, the better the project.
+              </p>
+              <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-blue-400/40 star-twinkle-2" />
+            </div>
+          </motion.div>
+
+          {/* Equal Validity Note */}
+          <motion.div
+            variants={fadeUp}
+            className="mt-8 px-6 py-4 bg-primary/8 border-l-4 border-primary rounded-r-xl"
+          >
+            <p className="text-text-body font-medium">
+              Both paths are equally valid. Judges care about whether you deeply
+              understood a human problem and built a thoughtful solution.
+            </p>
+          </motion.div>
+
+          {/* Person Cards with constellation patterns */}
+          <motion.div variants={fadeUp} className="mt-16">
+            <h3 className="font-display text-xl font-semibold text-foreground mb-6">
+              Who might you build for?
+            </h3>
+
+            {/* Connecting line SVG */}
+            <div className="relative">
+              <svg
+                className="absolute inset-0 w-full h-full pointer-events-none hidden sm:block"
+                aria-hidden="true"
+              >
+                {/* Central team node */}
+                <circle cx="50%" cy="50%" r="4" fill="#C4B5FD" opacity="0.4" />
+                <circle cx="50%" cy="50%" r="8" fill="none" stroke="#C4B5FD" strokeWidth="0.5" opacity="0.2" />
+              </svg>
+
+              <div className="grid sm:grid-cols-3 gap-4">
+                {personCards.map((card) => (
+                  <motion.div
+                    key={card.title}
+                    whileHover={{
+                      y: -6,
+                      boxShadow: "0 12px 40px -8px rgba(245, 158, 11, 0.15)",
+                    }}
+                    transition={{ duration: 0.2 }}
+                    className="relative p-6 rounded-2xl bg-card-bg border border-card-border cursor-default overflow-hidden group"
+                  >
+                    {/* Mini constellation pattern */}
+                    <svg
+                      className="absolute top-0 right-0 w-12 h-10 opacity-20 group-hover:opacity-40 transition-opacity"
+                      viewBox="0 0 50 35"
+                      aria-hidden="true"
+                    >
+                      {card.constellation.map((pt, i) => (
+                        <circle key={i} cx={pt.x} cy={pt.y} r="1.5" fill="#F5F5F5" />
+                      ))}
+                      {card.constellation.slice(0, -1).map((pt, i) => (
+                        <line
+                          key={`l${i}`}
+                          x1={pt.x}
+                          y1={pt.y}
+                          x2={card.constellation[i + 1].x}
+                          y2={card.constellation[i + 1].y}
+                          stroke="#F5F5F5"
+                          strokeWidth="0.5"
+                          opacity="0.4"
+                        />
+                      ))}
+                    </svg>
+
+                    {/* Star glow behind icon */}
+                    <div className="relative">
+                      <div className="absolute -inset-2 bg-primary/10 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <span className="relative text-3xl">{card.icon}</span>
+                    </div>
+                    <h4 className="mt-3 font-display text-lg font-bold text-foreground">
+                      {card.title}
+                    </h4>
+                    <p className="mt-1 text-sm text-text-body leading-relaxed">
+                      {card.description}
+                    </p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

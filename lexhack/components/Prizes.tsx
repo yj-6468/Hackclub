@@ -1,131 +1,164 @@
 "use client";
 
-import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
+import StarField from "./StarField";
 
 const prizes = [
   {
-    emoji: "🏆",
+    icon: "🏆",
     title: "Grand Prize",
-    desc: "The ultimate honor. Your project is so gloriously useless it transcends all reason. Sponsor-funded hardware awaits.",
-    highlight: true,
-    badge: "Grand Prize TBA 👀",
+    description: "Best combination of real-world impact and technical execution.",
+    note: "Grand Prize TBA 👀",
+    constellation: [[8, 6], [20, 4], [28, 12], [22, 22], [10, 18]] as [number, number][],
+    glowColor: "rgba(245, 158, 11, 0.12)",
   },
   {
-    emoji: "📱",
-    title: "Most Likely to Go Viral",
-    desc: "The project that, when shown to anyone, causes them to immediately try it out.",
-    highlight: false,
+    icon: "💡",
+    title: "Most Creative Solution",
+    description: "Unexpected approach to the problem.",
+    constellation: [[10, 8], [22, 5], [30, 15], [18, 22]] as [number, number][],
+    glowColor: "rgba(168, 85, 247, 0.12)",
   },
   {
-    emoji: "😂",
-    title: "Best Demo Performance",
-    desc: "Judging day is a performance. You brought the energy, the bit, the chaos.",
-    highlight: false,
-  },
-  {
-    emoji: "🌟",
+    icon: "🌟",
     title: "Best First-Time Hacker",
-    desc: "Your first hackathon, your first project, your first taste of building something real. We celebrate the beginning.",
-    highlight: false,
+    description: "Remarkable first hackathon, first project, first step.",
+    constellation: [[12, 10], [25, 6], [32, 18], [20, 24], [8, 20]] as [number, number][],
+    glowColor: "rgba(34, 211, 238, 0.12)",
+  },
+  {
+    icon: "🎤",
+    title: "Best Presentation",
+    description: "The demo that had the whole room engaged.",
+    constellation: [[10, 5], [24, 8], [30, 20], [16, 24]] as [number, number][],
+    glowColor: "rgba(251, 113, 133, 0.12)",
+  },
+  {
+    icon: "👀",
+    title: "People's Choice",
+    description: "Voted by all participants.",
+    constellation: [[8, 8], [18, 4], [28, 10], [24, 22], [12, 20]] as [number, number][],
+    glowColor: "rgba(74, 222, 128, 0.12)",
   },
 ];
 
-function PrizeCard({ prize, index }: { prize: typeof prizes[0]; index: number }) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 30 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5, delay: index * 0.07 }}
-      className={`glass-card rounded-2xl p-6 flex flex-col gap-4 relative overflow-hidden group ${
-        prize.highlight
-          ? "border-[#7C3AED]/40 bg-[#7C3AED]/5 col-span-full sm:col-span-1"
-          : ""
-      }`}
-    >
-      {prize.highlight && (
-        <div className="absolute inset-0 bg-gradient-to-br from-[#7C3AED]/10 via-transparent to-[#10B981]/5 pointer-events-none" />
-      )}
-
-      <div>
-        <span className="text-4xl group-hover:scale-110 transition-transform duration-200 inline-block">
-          {prize.emoji}
-        </span>
-      </div>
-
-      <div>
-        <h3 className={`font-grotesk font-bold text-lg text-white mb-0.5 ${prize.highlight ? "text-xl" : ""}`}>
-          {prize.title}
-        </h3>
-      </div>
-
-      <p className="text-zinc-400 text-sm leading-relaxed flex-1">{prize.desc}</p>
-
-      {prize.badge && (
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#7C3AED]/20 border border-[#7C3AED]/30 text-[#9F67FF] text-xs font-mono font-semibold">
-          {prize.badge}
-        </div>
-      )}
-    </motion.div>
-  );
-}
-
 export default function Prizes() {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="prizes" className="py-24 sm:py-32 relative">
-      <div className="absolute top-1/2 right-0 w-96 h-96 bg-[#7C3AED]/8 rounded-full blur-3xl pointer-events-none" />
+    <section
+      id="prizes"
+      className="relative py-24 sm:py-32 bg-background overflow-hidden"
+      ref={ref}
+    >
+      <StarField count={50} />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full bg-primary/[0.03] blur-3xl" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          initial={{ opacity: 0, y: 24 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }}
+          className="text-center"
         >
-          <span className="font-mono text-sm text-[#10B981] tracking-widest uppercase mb-4 block">
-            // prizes
-          </span>
-          <h2 className="font-grotesk font-bold text-4xl sm:text-5xl md:text-6xl text-white mb-6">
-            Win Things for Building{" "}
-            <span className="gradient-text">Useless Things</span>
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-foreground">
+            Prizes
           </h2>
-          <p className="text-zinc-400 text-lg max-w-2xl mx-auto">
-            Hardware, cloud credits, software licenses, and more — all for your deliberately terrible creations.
+          <p className="mt-4 text-lg text-text-body">
+            Recognition for outstanding work across five categories.
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 gap-4 mb-12 max-w-4xl mx-auto">
+        <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {prizes.map((prize, i) => (
-            <PrizeCard key={prize.title} prize={prize} index={i} />
+            <motion.div
+              key={prize.title}
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+              transition={{
+                duration: 0.6,
+                delay: i * 0.1,
+                ease: [0.22, 1, 0.36, 1] as const,
+              }}
+              whileHover={{
+                y: -6,
+                boxShadow: `0 20px 50px -12px ${prize.glowColor}`,
+                transition: { duration: 0.2 },
+              }}
+              className={`relative p-6 rounded-2xl bg-card-bg border border-card-border cursor-default overflow-hidden group ${
+                i === 0 ? "sm:col-span-2 lg:col-span-1" : ""
+              }`}
+            >
+              {/* Constellation pattern unique to each prize */}
+              <svg
+                className="absolute top-2 right-2 w-10 h-8 opacity-15 group-hover:opacity-30 transition-opacity"
+                viewBox="0 0 35 28"
+                aria-hidden="true"
+              >
+                {prize.constellation.map(([cx, cy], j) => (
+                  <circle key={j} cx={cx} cy={cy} r="1.2" fill="#F5F5F5" />
+                ))}
+                {prize.constellation.slice(0, -1).map(([x1, y1], j) => {
+                  const [x2, y2] = prize.constellation[j + 1];
+                  return (
+                    <line
+                      key={`l${j}`}
+                      x1={x1} y1={y1} x2={x2} y2={y2}
+                      stroke="#F5F5F5"
+                      strokeWidth="0.4"
+                      opacity="0.5"
+                    />
+                  );
+                })}
+                {/* Close the constellation */}
+                <line
+                  x1={prize.constellation[prize.constellation.length - 1][0]}
+                  y1={prize.constellation[prize.constellation.length - 1][1]}
+                  x2={prize.constellation[0][0]}
+                  y2={prize.constellation[0][1]}
+                  stroke="#F5F5F5"
+                  strokeWidth="0.4"
+                  opacity="0.3"
+                />
+              </svg>
+
+              <div className="relative">
+                <div className="absolute -inset-1 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity" style={{ background: prize.glowColor }} />
+                <div className="relative w-14 h-14 rounded-xl bg-white/5 flex items-center justify-center text-2xl border border-white/5">
+                  {prize.icon}
+                </div>
+              </div>
+              <h3 className="mt-4 font-display text-xl font-bold text-foreground">
+                {prize.title}
+              </h3>
+              <p className="mt-2 text-sm text-text-body leading-relaxed">
+                {prize.description}
+              </p>
+              {prize.note && (
+                <p className="mt-3 text-sm font-semibold text-primary">
+                  {prize.note}
+                </p>
+              )}
+            </motion.div>
           ))}
         </div>
 
-        {/* Sponsor note */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.4 }}
-          className="text-center p-6 rounded-2xl border border-white/8 bg-white/2"
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ delay: 0.6, duration: 0.6 }}
+          className="mt-10 text-center text-sm text-text-muted"
         >
-          <p className="text-zinc-400 text-sm sm:text-base">
-            <span className="text-white font-medium">Prize pool is sponsor-funded.</span>{" "}
-            The more sponsors we get, the better the prizes.{" "}
-            <a
-              href="mailto:lexhackclub@gmail.com"
-              className="text-[#7C3AED] hover:text-[#9F67FF] underline underline-offset-2 transition-colors"
-            >
-              Want to be a sponsor?
-            </a>
-          </p>
-        </motion.div>
+          Prize pool is sponsor-funded. Want to contribute?{" "}
+          <a
+            href="mailto:lexhackclub@gmail.com"
+            className="text-primary hover:text-primary-light font-medium underline underline-offset-2 transition-colors"
+          >
+            Email us
+          </a>
+        </motion.p>
       </div>
     </section>
   );

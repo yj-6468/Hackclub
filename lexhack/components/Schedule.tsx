@@ -1,137 +1,238 @@
 "use client";
 
-import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { useRef, useState } from "react";
+import StarField from "./StarField";
 
-const day1 = [
-  { time: "10:00 AM", event: "Doors open, check-in, name tags, t-shirts", icon: "🚪", type: "logistics" },
-  { time: "10:30 AM", event: "Opening Ceremony — welcome, rules, theme, sponsor shoutouts, example projects", icon: "🎤", type: "ceremony" },
-  { time: "11:00 AM", event: "Team formation + brainstorming (ice-breakers, idea pitching)", icon: "🤝", type: "logistics" },
-  { time: "11:30 AM", event: "Hacking begins!", icon: "⚡", type: "milestone" },
-  { time: "12:00 PM", event: "Workshop: Getting Started (Git, APIs, project scaffolding for beginners)", icon: "📚", type: "workshop" },
-  { time: "12:45 PM", event: "Lunch", icon: "🍕", type: "food" },
-  { time: "1:30 PM", event: "Mentor office hours (15-min slots)", icon: "💬", type: "mentorship" },
-  { time: "2:30 PM", event: "Snacks + quick progress check-in (30-second update from each team)", icon: "🍫", type: "food" },
-  { time: "3:00 PM", event: "Library day ends — teams continue hacking from home", icon: "🏠", type: "logistics" },
-  { time: "7:00 PM", event: "Virtual check-in on Discord (optional — share screenshots, hang out)", icon: "💻", type: "virtual" },
-  { time: "11:00 PM", event: "Midnight showcase on Discord (optional — share your most unhinged progress)", icon: "🌙", type: "virtual" },
+type TabKey = "day1" | "buildweek" | "day2";
+
+const tabs: { key: TabKey; label: string; date: string; location: string }[] = [
+  {
+    key: "day1",
+    label: "Day 1",
+    date: "Sat, June 6",
+    location: "Cary Memorial Library",
+  },
+  {
+    key: "buildweek",
+    label: "Build Week",
+    date: "June 7–12",
+    location: "Remote via Discord",
+  },
+  {
+    key: "day2",
+    label: "Day 2",
+    date: "Sat, June 13",
+    location: "Community Center",
+  },
 ];
 
-const day2 = [
-  { time: "1:00 PM", event: "Doors open, snacks, final hacking sprint", icon: "🏃", type: "milestone" },
-  { time: "1:30 PM", event: "Submissions close (Devpost)", icon: "🔒", type: "milestone" },
-  { time: "1:45 PM", event: "Demo prep — practice pitches, set up presentations", icon: "📝", type: "logistics" },
-  { time: "2:15 PM", event: "Presentations begin (5 min demo + 2 min Q&A per team)", icon: "🎤", type: "ceremony" },
-  { time: "3:30 PM", event: "Voting — judges + participants fill out scoring sheets", icon: "⚖️", type: "ceremony" },
-  { time: "3:45 PM", event: "Score tallying — photo slideshow while organizers calculate", icon: "📸", type: "logistics" },
-  { time: "4:00 PM", event: "Closing Ceremony — winners announced, prizes, sponsor thanks, group photo", icon: "🏆", type: "ceremony" },
-  { time: "5:00 PM", event: "Event ends, cleanup", icon: "👋", type: "logistics" },
-];
-
-const typeColors: Record<string, string> = {
-  milestone: "border-l-[#7C3AED] bg-[#7C3AED]/10",
-  ceremony: "border-l-[#10B981] bg-[#10B981]/10",
-  workshop: "border-l-blue-500 bg-blue-500/10",
-  food: "border-l-orange-400 bg-orange-400/10",
-  virtual: "border-l-pink-500 bg-pink-500/10",
-  logistics: "border-l-zinc-600 bg-zinc-800/30",
-  mentorship: "border-l-yellow-400 bg-yellow-400/10",
+const scheduleData: Record<TabKey, { time: string; event: string; highlight?: boolean }[]> = {
+  day1: [
+    { time: "11:30 AM", event: "Doors open, check-in, breakfast snacks" },
+    { time: "12:00 PM", event: "Opening Ceremony", highlight: true },
+    {
+      time: "12:30 PM",
+      event: "Team formation + person selection",
+    },
+    { time: "1:15 PM", event: "Lunch" },
+    {
+      time: "1:45 PM",
+      event: "Each team finds their person's problem to solve",
+      highlight: true,
+    },
+    {
+      time: "2:00 PM",
+      event: "Planning session: sketch solution, choose tech stack",
+    },
+    {
+      time: "2:30 PM",
+      event: "Workshop: Getting Started (Git, APIs, deployment)",
+    },
+    { time: "3:15 PM", event: "Hacking begins", highlight: true },
+    { time: "4:15 PM", event: "Snacks and wrap-up" },
+    { time: "4:30 PM", event: "Day 1 ends, continue building from home" },
+  ],
+  buildweek: [
+    { time: "Mon 7 PM", event: "Discord check-in (optional)" },
+    { time: "Wed 7 PM", event: "Midweek check-in (optional)" },
+    {
+      time: "Fri 7 PM",
+      event: "Final check-in before Demo Day (optional)",
+      highlight: true,
+    },
+    { time: "All week", event: "Helpers available on Discord" },
+  ],
+  day2: [
+    { time: "9:00 AM", event: "Doors open, breakfast, final polish" },
+    { time: "10:00 AM", event: "Submissions close", highlight: true },
+    {
+      time: "10:45 AM",
+      event: "Presentations begin (7 min per team: 5 min demo + 2 min Q&A)",
+      highlight: true,
+    },
+    { time: "12:15 PM", event: "Lunch" },
+    {
+      time: "12:45 PM",
+      event:
+        "Feedback round (persons present give live feedback; for remote persons, teams share their reaction)",
+    },
+    {
+      time: "1:15 PM",
+      event: "Voting (60% judges + 40% participants)",
+      highlight: true,
+    },
+    {
+      time: "1:45 PM",
+      event: "Closing Ceremony: winners, prizes, group photo",
+      highlight: true,
+    },
+    { time: "2:00 PM", event: "Event ends" },
+  ],
 };
 
-function TimelineItem({ item, index }: { item: (typeof day1)[0]; index: number }) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-50px" });
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, x: -20 }}
-      animate={inView ? { opacity: 1, x: 0 } : {}}
-      transition={{ duration: 0.4, delay: index * 0.05 }}
-      className={`flex gap-4 p-4 rounded-xl border-l-2 ${typeColors[item.type]} transition-all duration-200 hover:scale-[1.01]`}
-    >
-      <span className="text-xl flex-shrink-0 mt-0.5">{item.icon}</span>
-      <div className="flex-1 min-w-0">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
-          <span className="font-grotesk font-semibold text-white text-sm sm:text-base">
-            {item.event}
-          </span>
-          <span className="font-mono text-xs text-zinc-500 flex-shrink-0">
-            {item.time}
-          </span>
-        </div>
-      </div>
-    </motion.div>
-  );
-}
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const },
+  },
+};
 
 export default function Schedule() {
-  const [activeDay, setActiveDay] = useState<1 | 2>(1);
+  const [activeTab, setActiveTab] = useState<TabKey>("day1");
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
-
-  const items = activeDay === 1 ? day1 : day2;
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="schedule" className="py-24 sm:py-32 relative">
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#10B981]/5 rounded-full blur-3xl pointer-events-none" />
+    <section
+      id="schedule"
+      className="relative py-24 sm:py-32 bg-background-alt overflow-hidden"
+      ref={ref}
+    >
+      <StarField count={40} />
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          variants={fadeUp}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          className="text-center"
         >
-          <span className="font-mono text-sm text-[#10B981] tracking-widest uppercase mb-4 block">
-            // schedule
-          </span>
-          <h2 className="font-grotesk font-bold text-4xl sm:text-5xl text-white mb-4">
-            48 Hours of{" "}
-            <span className="gradient-text">Organized Chaos</span>
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-foreground">
+            Schedule
           </h2>
+          <p className="mt-4 text-lg text-text-body">
+            Two Saturdays in-person, one week building remotely.
+          </p>
         </motion.div>
 
-        {/* Day toggle */}
+        {/* Tabs */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="flex rounded-xl bg-white/5 p-1 mb-8 border border-white/10"
+          variants={fadeUp}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          className="mt-12 flex flex-col sm:flex-row gap-3 justify-center"
         >
-          {([1, 2] as const).map((day) => (
+          {tabs.map((tab) => (
             <button
-              key={day}
-              onClick={() => setActiveDay(day)}
-              className={`flex-1 py-3 px-4 rounded-lg font-grotesk font-semibold text-sm transition-all duration-200 ${
-                activeDay === day
-                  ? "bg-[#7C3AED] text-white shadow-lg"
-                  : "text-zinc-400 hover:text-white"
+              key={tab.key}
+              onClick={() => setActiveTab(tab.key)}
+              className={`relative px-6 py-4 rounded-xl text-left sm:text-center transition-all duration-300 border ${
+                activeTab === tab.key
+                  ? "bg-primary/10 border-primary/30 shadow-lg shadow-primary/5"
+                  : "bg-card-bg border-card-border hover:border-primary/20 hover:bg-card-bg/80"
               }`}
             >
-              Day {day} — {day === 1 ? "Saturday · 10 AM – 3 PM" : "Sunday · 1 PM – 5 PM"}
+              {/* Star indicator for active tab */}
+              {activeTab === tab.key && (
+                <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-primary shadow-sm shadow-primary/50" />
+              )}
+              <span
+                className={`block font-display text-lg font-bold ${
+                  activeTab === tab.key ? "text-primary" : "text-foreground"
+                }`}
+              >
+                {tab.label}
+              </span>
+              <span className="block text-sm text-text-muted mt-0.5">
+                {tab.date} · {tab.location}
+              </span>
             </button>
           ))}
         </motion.div>
 
-        {/* Timeline */}
-        <div className="flex flex-col gap-2">
-          {items.map((item, i) => (
-            <TimelineItem key={`${activeDay}-${i}`} item={item} index={i} />
-          ))}
-        </div>
-
-        {/* Note */}
+        {/* Schedule Content */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.5 }}
-          className="mt-8 p-4 rounded-xl border border-zinc-800 bg-zinc-900/40 text-center"
+          key={activeTab}
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] as const }}
+          className="mt-10"
         >
-          <p className="text-zinc-500 text-sm">
-            <span className="text-zinc-300 font-medium">Note:</span> The library closes at 5 PM each day. Overnight hacking continues via Discord — or you can sleep like a normal person. We won&apos;t judge.
-          </p>
+          <div className="relative">
+            {/* Constellation timeline line */}
+            <div className="absolute left-[7px] sm:left-[88px] top-2 bottom-2 w-px bg-card-border">
+              {/* Dim star dots along line */}
+              {scheduleData[activeTab].map((_, i) => (
+                <div
+                  key={i}
+                  className="absolute left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-star/30"
+                  style={{
+                    top: `${(i / (scheduleData[activeTab].length - 1)) * 100}%`,
+                  }}
+                />
+              ))}
+            </div>
+
+            <div className="space-y-0">
+              {scheduleData[activeTab].map((item, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.05, duration: 0.4 }}
+                  className="relative flex items-start gap-4 sm:gap-6 py-3 group"
+                >
+                  {/* Time */}
+                  <span className="hidden sm:block w-20 text-right text-sm font-medium text-text-muted shrink-0 pt-0.5">
+                    {item.time}
+                  </span>
+
+                  {/* Star dot */}
+                  <div className="relative shrink-0 mt-1.5">
+                    <div
+                      className={`w-3.5 h-3.5 rounded-full border-2 transition-all ${
+                        item.highlight
+                          ? "border-primary bg-primary/30 shadow-sm shadow-primary/30"
+                          : "border-card-border bg-card-bg group-hover:border-primary/40"
+                      }`}
+                    />
+                    {item.highlight && (
+                      <div className="absolute inset-0 w-3.5 h-3.5 rounded-full bg-primary/20 animate-ping" />
+                    )}
+                  </div>
+
+                  {/* Event */}
+                  <div className="flex-1 pb-1">
+                    <span className="sm:hidden text-xs font-medium text-text-muted block mb-1">
+                      {item.time}
+                    </span>
+                    <span
+                      className={`text-base ${
+                        item.highlight
+                          ? "font-semibold text-foreground"
+                          : "text-text-body"
+                      }`}
+                    >
+                      {item.event}
+                    </span>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
         </motion.div>
       </div>
     </section>
