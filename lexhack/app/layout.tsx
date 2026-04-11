@@ -1,63 +1,60 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
-import { Analytics } from "@vercel/analytics/next";
+import { Outfit, DM_Sans } from "next/font/google";
 import "./globals.css";
 
-const spaceGrotesk = Space_Grotesk({
+const outfit = Outfit({
+  variable: "--font-outfit",
   subsets: ["latin"],
-  variable: "--font-space-grotesk",
   display: "swap",
 });
 
-const inter = Inter({
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
   subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-jetbrains-mono",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://lexhack.hackclub.com"),
-  title: "LexHack '26 — Lexington's First High School Hackathon",
+  title: "LexHack '26 — Build for Someone Real",
   description:
-    "A 48-hour hackathon where 40 high school students compete to build the most technically impressive but deliberately useless applications. June 2026 · Cary Memorial Library · Completely Free.",
+    "Lexington's first high school hackathon. Pick a real person, understand their problem, and spend a week building something just for them. June 6 & 13, 2026.",
   keywords: [
     "hackathon",
-    "lexington",
     "high school",
-    "coding",
-    "hack club",
+    "Lexington MA",
     "LexHack",
-    "Massachusetts",
+    "coding",
+    "build for someone",
+    "Hack Club",
   ],
   authors: [{ name: "Hack Club @ Lexington High School" }],
   openGraph: {
-    title: "LexHack '26 — Technically Impressive. Fundamentally Unnecessary.",
+    title: "LexHack '26 — Build for Someone Real",
     description:
-      "Lexington's first-ever high school hackathon. 48 hours. Infinite ideas June 2026 · Free · Cary Memorial Library.",
-    type: "website",
-    locale: "en_US",
+      "Lexington's first high school hackathon. Pick a real person, understand their problem, and spend a week building something just for them.",
+    url: "https://lexhack.hackclub.com",
+    siteName: "LexHack '26",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "LexHack '26",
+        alt: "LexHack '26 — Build for Someone Real",
       },
     ],
+    locale: "en_US",
+    type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "LexHack '26",
-    description: "Technically impressive BUT Fundamentally unnecessary.",
+    title: "LexHack '26 — Build for Someone Real",
+    description:
+      "Lexington's first high school hackathon. June 6 & 13, 2026. Free.",
     images: ["/og-image.png"],
   },
-  robots: "index, follow",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({
@@ -66,13 +63,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
-      <body
-        className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} antialiased bg-[#0A0A0A] text-[#FAFAFA]`}
-      >
-        {children}
-        <Analytics />
-      </body>
+    <html
+      lang="en"
+      className={`${outfit.variable} ${dmSans.variable} h-full antialiased`}
+    >
+      <body className="min-h-full flex flex-col bg-background">{children}</body>
     </html>
   );
 }
