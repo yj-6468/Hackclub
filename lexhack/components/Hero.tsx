@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 import StarField from "./StarField";
 
 const badges = [
-  { icon: "📅", text: "June 6 - 13, 2026" },
-  { icon: "📍", text: "Cary Library + Community Center" },
-  { icon: "✨", text: "Free" },
+  { icon: "📅", text: "June 6 & 13, 2026" },
+  { icon: "📍", text: "Lexington Community Center" },
+  { icon: "🎟", text: "Free" },
   { icon: "👥", text: "30–40 students" },
 ];
 

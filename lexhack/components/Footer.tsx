@@ -65,14 +65,9 @@ export default function Footer() {
             <p className="mt-2 text-lg font-display italic text-text-muted">
               Build for someone
             </p>
-            <div className="mt-6 space-y-3 text-sm text-text-muted">
+            <div className="mt-6 text-sm text-text-muted">
               <p>
-                <strong className="text-text-body">Day 1:</strong> Cary Memorial
-                Library · 1874 Massachusetts Ave · Lexington, MA
-              </p>
-              <p>
-                <strong className="text-text-body">Day 2:</strong> Lexington
-                Community Center · 39 Marrett Rd · Lexington, MA
+                Lexington Community Center · 39 Marrett Rd · Lexington, MA
               </p>
             </div>
           </div>
