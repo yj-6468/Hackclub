@@ -11,7 +11,7 @@ const tabs: { key: TabKey; label: string; date: string; location: string }[] = [
     key: "day1",
     label: "Day 1",
     date: "Sat, June 6",
-    location: "Cary Memorial Library",
+    location: "Lexington Community Center",
   },
   {
     key: "buildweek",
@@ -23,35 +23,33 @@ const tabs: { key: TabKey; label: string; date: string; location: string }[] = [
     key: "day2",
     label: "Day 2",
     date: "Sat, June 13",
-    location: "Community Center",
+    location: "Lexington Community Center",
   },
 ];
 
 const scheduleData: Record<TabKey, { time: string; event: string; highlight?: boolean }[]> = {
   day1: [
-    { time: "11:30 AM", event: "Doors open, check-in, breakfast snacks" },
-    { time: "12:00 PM", event: "Opening Ceremony", highlight: true },
+    { time: "9:00 AM", event: "Organizers arrive, setup" },
+    { time: "9:30 AM", event: "Doors open, check-in, name tags, swag, snacks" },
+    { time: "10:00 AM", event: "Opening Ceremony", highlight: true },
+    { time: "10:30 AM", event: "Team formation + person selection" },
+    { time: "11:15 AM", event: "Lunch" },
     {
-      time: "12:30 PM",
-      event: "Team formation + person selection",
-    },
-    { time: "1:15 PM", event: "Lunch" },
-    {
-      time: "1:45 PM",
-      event: "Each team finds their person's problem to solve",
+      time: "11:45 AM",
+      event: "Each team presents their person's problem (1 min each)",
       highlight: true,
     },
     {
-      time: "2:00 PM",
+      time: "12:00 PM",
       event: "Planning session: sketch solution, choose tech stack",
     },
     {
-      time: "2:30 PM",
+      time: "12:30 PM",
       event: "Workshop: Getting Started (Git, APIs, deployment)",
     },
-    { time: "3:15 PM", event: "Hacking begins", highlight: true },
-    { time: "4:15 PM", event: "Snacks and wrap-up" },
-    { time: "4:30 PM", event: "Day 1 ends, continue building from home" },
+    { time: "1:15 PM", event: "Hacking begins", highlight: true },
+    { time: "1:45 PM", event: "Snacks and wrap-up" },
+    { time: "2:00 PM", event: "Day 1 ends, continue building from home" },
   ],
   buildweek: [
     { time: "Mon 7 PM", event: "Discord check-in (optional)" },

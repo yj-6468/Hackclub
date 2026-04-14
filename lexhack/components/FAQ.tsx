@@ -42,12 +42,12 @@ const faqs = [
     a: "Yes. AI is fully allowed and encouraged. AI tools are part of how people build software now. Use any tools you want. Teams that use AI thoughtfully might score higher as well.",
   },
   {
-    q: "Why are there two locations?",
-    a: "Day 1 is at Cary Memorial Library. Day 2 is at the Lexington Community Center. Both are in central Lexington, about 10 minutes apart.",
+    q: "Where is the hackathon?",
+    a: "Both days are at the Lexington Community Center, 39 Marrett Rd, Lexington, MA 02421. Same venue, same time (9 AM–2 PM) both Saturdays.",
   },
   {
     q: "I'm a parent — is this safe?",
-    a: "Absolutely. Both venues are trusted public spaces. Adult organizers and volunteers (helpers) are present at all times. We follow Hack Club's Code of Conduct.",
+    a: "Absolutely. The Lexington Community Center is a trusted public space. Adult organizers and volunteers (helpers) are present at all times. We follow Hack Club's Code of Conduct.",
   },
 ];
 

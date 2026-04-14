@@ -8,9 +8,9 @@ const steps = [
   {
     number: "01",
     title: "Find Your Person",
-    date: "Saturday, June 6 · Cary Memorial Library · 11:30 AM–4:30 PM",
+    date: "Saturday, June 6 · Community Center · 9 AM–2 PM",
     description:
-      "Pick who you're building for. Already have someone? Call or text them to interview. Building for a persona? Sketch out their life and frustrations. By lunch, every team presents their person's problem to the room.",
+      "Pick who you're building for. Already have someone? Call or text them to interview. Building for a persona? Sketch out their life and frustrations.",
     constellation: [
       [20, 15], [30, 25], [25, 35],
     ] as [number, number][],

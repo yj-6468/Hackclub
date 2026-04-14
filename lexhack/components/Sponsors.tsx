@@ -7,7 +7,6 @@ import StarField from "./StarField";
 const communityPartners = [
   { name: "Hack Club", url: "https://hackclub.com" },
   { name: "The Hack Foundation", url: "https://hackclub.com" },
-  { name: "Cary Memorial Library", url: null },
   { name: "Lexington Community Center", url: null },
 ];
 
