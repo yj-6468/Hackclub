@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 const navLinks = [
   { label: "About", href: "#about" },
@@ -23,11 +24,7 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    if (mobileOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
@@ -38,17 +35,27 @@ export default function Navbar() {
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "bg-background/60 backdrop-blur-md border-b border-white/[0.06]"
+            ? "bg-background/70 backdrop-blur-md border-b border-white/[0.06]"
             : "bg-transparent"
         }`}
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 sm:h-20 items-center justify-between">
-            <a
-              href="#"
-              className="font-display text-xl sm:text-2xl font-bold text-foreground tracking-tight"
-            >
-              LexHack <span className="text-primary">&rsquo;26</span>
+            <a href="#" className="flex items-center gap-3">
+              <Image
+                src="/logo.jpg"
+                alt="LexHack logo"
+                width={40}
+                height={40}
+                className="rounded-lg"
+                priority
+              />
+              <span className="font-[family-name:var(--font-display)] text-xl sm:text-2xl font-normal text-foreground tracking-tight">
+                LexHack{" "}
+                <em className="font-[family-name:var(--font-italic)] italic text-accent not-italic-normal">
+                  &rsquo;26
+                </em>
+              </span>
             </a>
 
             <div className="hidden lg:flex items-center gap-1">
@@ -56,7 +63,7 @@ export default function Navbar() {
                 <a
                   key={link.href}
                   href={link.href}
-                  className="px-3 py-2 text-sm font-medium text-text-muted hover:text-foreground transition-colors rounded-lg hover:bg-white/5"
+                  className="px-3 py-2 font-[family-name:var(--font-mono)] text-[11px] uppercase tracking-[0.15em] text-text-muted hover:text-foreground transition-colors rounded-lg"
                 >
                   {link.label}
                 </a>
@@ -65,9 +72,9 @@ export default function Navbar() {
                 href="https://forms.gle/32xyrnJxHYpWm1937"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="ml-4 inline-flex items-center px-5 py-2.5 text-sm font-semibold text-background bg-primary hover:bg-primary-dark rounded-full transition-all duration-200 shadow-sm hover:shadow-lg hover:shadow-primary/20"
+                className="ml-4 inline-flex items-center px-5 py-2.5 text-sm font-semibold text-background bg-foreground hover:bg-primary rounded-full transition-all duration-200 shadow-sm"
               >
-                Register Free
+                Register
               </a>
             </div>
 
@@ -136,9 +143,9 @@ export default function Navbar() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}
-                  className="mt-6 inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-background bg-primary hover:bg-primary-dark rounded-full transition-colors shadow-lg shadow-primary/20"
+                  className="mt-6 inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-background bg-foreground hover:bg-primary rounded-full transition-colors"
                 >
-                  Register Free
+                  Register
                 </motion.a>
               </div>
             </motion.div>
