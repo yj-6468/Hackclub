@@ -1,172 +1,212 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import StarField from "./StarField";
 
-const badges = [
-  { icon: "📅", text: "June 6 & 13, 2026" },
-  { icon: "📍", text: "Lexington Community Center" },
-  { icon: "🎟", text: "Free" },
-  { icon: "👥", text: "30–40 students" },
-];
-
-/* Constellation SVG: two people connected by lines to a central laptop/project node */
-function HeroConstellation() {
+/** Multi-layer nebula + milky-way background. */
+function Sky() {
   return (
-    <motion.svg
-      viewBox="0 0 500 300"
-      fill="none"
-      className="absolute inset-0 w-full h-full opacity-20 pointer-events-none"
-      aria-hidden="true"
-    >
-      {/* Person 1 silhouette constellation */}
-      <motion.circle cx="120" cy="80" r="3" fill="#F5F5F5" initial={{ opacity: 0 }} animate={{ opacity: [0.4, 1, 0.4] }} transition={{ duration: 4, repeat: Infinity, delay: 0 }} />
-      <motion.circle cx="120" cy="120" r="2" fill="#F5F5F5" initial={{ opacity: 0 }} animate={{ opacity: [0.3, 0.8, 0.3] }} transition={{ duration: 3.5, repeat: Infinity, delay: 0.5 }} />
-      <motion.circle cx="100" cy="160" r="2" fill="#F5F5F5" initial={{ opacity: 0 }} animate={{ opacity: [0.3, 0.7, 0.3] }} transition={{ duration: 5, repeat: Infinity, delay: 1 }} />
-      <motion.circle cx="140" cy="160" r="2" fill="#F5F5F5" initial={{ opacity: 0 }} animate={{ opacity: [0.3, 0.7, 0.3] }} transition={{ duration: 4.5, repeat: Infinity, delay: 0.3 }} />
-      <motion.circle cx="105" cy="140" r="1.5" fill="#F5F5F5" initial={{ opacity: 0 }} animate={{ opacity: [0.2, 0.6, 0.2] }} transition={{ duration: 4, repeat: Infinity, delay: 0.7 }} />
-      <motion.circle cx="135" cy="140" r="1.5" fill="#F5F5F5" initial={{ opacity: 0 }} animate={{ opacity: [0.2, 0.6, 0.2] }} transition={{ duration: 3, repeat: Infinity, delay: 1.2 }} />
-
-      {/* Person 1 lines */}
-      <motion.line x1="120" y1="80" x2="120" y2="120" stroke="#F5F5F5" strokeWidth="0.8" initial={{ pathLength: 0, opacity: 0 }} animate={{ pathLength: 1, opacity: 0.2 }} transition={{ duration: 1.5, delay: 0.5 }} />
-      <motion.line x1="120" y1="120" x2="105" y2="140" stroke="#F5F5F5" strokeWidth="0.8" initial={{ pathLength: 0, opacity: 0 }} animate={{ pathLength: 1, opacity: 0.2 }} transition={{ duration: 1, delay: 1 }} />
-      <motion.line x1="120" y1="120" x2="135" y2="140" stroke="#F5F5F5" strokeWidth="0.8" initial={{ pathLength: 0, opacity: 0 }} animate={{ pathLength: 1, opacity: 0.2 }} transition={{ duration: 1, delay: 1.2 }} />
-      <motion.line x1="105" y1="140" x2="100" y2="160" stroke="#F5F5F5" strokeWidth="0.8" initial={{ pathLength: 0, opacity: 0 }} animate={{ pathLength: 1, opacity: 0.15 }} transition={{ duration: 1, delay: 1.5 }} />
-      <motion.line x1="135" y1="140" x2="140" y2="160" stroke="#F5F5F5" strokeWidth="0.8" initial={{ pathLength: 0, opacity: 0 }} animate={{ pathLength: 1, opacity: 0.15 }} transition={{ duration: 1, delay: 1.5 }} />
-
-      {/* Central project node — laptop shape */}
-      <motion.circle cx="250" cy="130" r="4" fill="#C4B5FD" initial={{ opacity: 0, scale: 0 }} animate={{ opacity: [0.5, 1, 0.5], scale: 1 }} transition={{ opacity: { duration: 3, repeat: Infinity }, scale: { duration: 0.8, delay: 2 } }} />
-      <motion.rect x="235" y="140" width="30" height="18" rx="2" stroke="#C4B5FD" strokeWidth="1" fill="none" initial={{ opacity: 0 }} animate={{ opacity: 0.4 }} transition={{ delay: 2.2, duration: 1 }} />
-      <motion.line x1="230" y1="158" x2="270" y2="158" stroke="#C4B5FD" strokeWidth="1" initial={{ opacity: 0 }} animate={{ opacity: 0.3 }} transition={{ delay: 2.5, duration: 0.8 }} />
-
-      {/* Connection lines: person 1 → project */}
-      <motion.line x1="140" y1="120" x2="235" y2="130" stroke="#C4B5FD" strokeWidth="0.6" initial={{ pathLength: 0, opacity: 0 }} animate={{ pathLength: 1, opacity: 0.15 }} transition={{ duration: 1.5, delay: 2.5 }} />
-
-      {/* Person 2 silhouette constellation */}
-      <motion.circle cx="380" cy="85" r="3" fill="#F5F5F5" initial={{ opacity: 0 }} animate={{ opacity: [0.4, 1, 0.4] }} transition={{ duration: 4.5, repeat: Infinity, delay: 0.8 }} />
-      <motion.circle cx="380" cy="125" r="2" fill="#F5F5F5" initial={{ opacity: 0 }} animate={{ opacity: [0.3, 0.8, 0.3] }} transition={{ duration: 3, repeat: Infinity, delay: 0.2 }} />
-      <motion.circle cx="360" cy="165" r="2" fill="#F5F5F5" initial={{ opacity: 0 }} animate={{ opacity: [0.3, 0.7, 0.3] }} transition={{ duration: 4, repeat: Infinity, delay: 1.5 }} />
-      <motion.circle cx="400" cy="165" r="2" fill="#F5F5F5" initial={{ opacity: 0 }} animate={{ opacity: [0.3, 0.7, 0.3] }} transition={{ duration: 5, repeat: Infinity, delay: 0.6 }} />
-      <motion.circle cx="365" cy="145" r="1.5" fill="#F5F5F5" initial={{ opacity: 0 }} animate={{ opacity: [0.2, 0.6, 0.2] }} transition={{ duration: 3.5, repeat: Infinity, delay: 1 }} />
-      <motion.circle cx="395" cy="145" r="1.5" fill="#F5F5F5" initial={{ opacity: 0 }} animate={{ opacity: [0.2, 0.6, 0.2] }} transition={{ duration: 4, repeat: Infinity, delay: 0.4 }} />
-
-      {/* Person 2 lines */}
-      <motion.line x1="380" y1="85" x2="380" y2="125" stroke="#F5F5F5" strokeWidth="0.8" initial={{ pathLength: 0, opacity: 0 }} animate={{ pathLength: 1, opacity: 0.2 }} transition={{ duration: 1.5, delay: 0.8 }} />
-      <motion.line x1="380" y1="125" x2="365" y2="145" stroke="#F5F5F5" strokeWidth="0.8" initial={{ pathLength: 0, opacity: 0 }} animate={{ pathLength: 1, opacity: 0.15 }} transition={{ duration: 1, delay: 1.3 }} />
-      <motion.line x1="380" y1="125" x2="395" y2="145" stroke="#F5F5F5" strokeWidth="0.8" initial={{ pathLength: 0, opacity: 0 }} animate={{ pathLength: 1, opacity: 0.15 }} transition={{ duration: 1, delay: 1.5 }} />
-      <motion.line x1="365" y1="145" x2="360" y2="165" stroke="#F5F5F5" strokeWidth="0.8" initial={{ pathLength: 0, opacity: 0 }} animate={{ pathLength: 1, opacity: 0.15 }} transition={{ duration: 1, delay: 1.8 }} />
-      <motion.line x1="395" y1="145" x2="400" y2="165" stroke="#F5F5F5" strokeWidth="0.8" initial={{ pathLength: 0, opacity: 0 }} animate={{ pathLength: 1, opacity: 0.15 }} transition={{ duration: 1, delay: 1.8 }} />
-
-      {/* Connection lines: person 2 → project */}
-      <motion.line x1="360" y1="125" x2="270" y2="130" stroke="#C4B5FD" strokeWidth="0.6" initial={{ pathLength: 0, opacity: 0 }} animate={{ pathLength: 1, opacity: 0.15 }} transition={{ duration: 1.5, delay: 2.8 }} />
-
-      {/* Scattered ambient stars */}
-      {[
-        [50, 50], [450, 40], [30, 200], [470, 220], [200, 30], [320, 250],
-        [80, 250], [420, 60], [170, 220], [350, 30], [250, 260], [60, 130],
-      ].map(([cx, cy], i) => (
-        <motion.circle
-          key={i}
-          cx={cx}
-          cy={cy}
-          r={i % 3 === 0 ? 1.5 : 1}
-          fill="#F5F5F5"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: [0.1, 0.4, 0.1] }}
-          transition={{ duration: 3 + (i % 3), repeat: Infinity, delay: i * 0.4 }}
-        />
-      ))}
-    </motion.svg>
+    <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden>
+      {/* base gradient */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse 80% 60% at 50% 30%, #15132a 0%, #0a0d18 40%, #05070d 100%)",
+        }}
+      />
+      {/* nebulae */}
+      <div
+        className="absolute"
+        style={{
+          left: "20%",
+          top: "35%",
+          width: 700,
+          height: 700,
+          background:
+            "radial-gradient(circle, rgba(196,181,253,0.18) 0%, rgba(196,181,253,0) 55%)",
+          filter: "blur(20px)",
+          animation: "nebula-drift 40s ease-in-out infinite",
+        }}
+      />
+      <div
+        className="absolute"
+        style={{
+          right: "15%",
+          top: "55%",
+          width: 500,
+          height: 500,
+          background:
+            "radial-gradient(circle, rgba(253,164,175,0.14) 0%, rgba(253,164,175,0) 60%)",
+          filter: "blur(20px)",
+          animation: "nebula-drift 60s ease-in-out infinite reverse",
+        }}
+      />
+      {/* milky way streak */}
+      <div
+        className="absolute inset-x-0"
+        style={{
+          top: "40%",
+          height: 260,
+          background:
+            "linear-gradient(105deg, transparent 0%, rgba(196,181,253,0.1) 35%, rgba(253,164,175,0.12) 55%, transparent 85%)",
+          filter: "blur(30px)",
+          transform: "rotate(-8deg)",
+          opacity: 0.8,
+          animation: "aurora 14s ease-in-out infinite",
+        }}
+      />
+    </div>
   );
 }
 
+/** Periodic diagonal shooting star. */
+function ShootingStar({ delay = 0 }: { delay?: number }) {
+  const [key, setKey] = useState(0);
+  useEffect(() => {
+    const id = setInterval(() => setKey((k) => k + 1), 11000);
+    return () => clearInterval(id);
+  }, []);
+  const x = 10 + Math.random() * 60;
+  const y = 10 + Math.random() * 30;
+  return (
+    <div
+      key={key}
+      className="absolute pointer-events-none"
+      style={{
+        left: `${x}%`,
+        top: `${y}%`,
+        animation: `shoot 2.4s ease-out ${delay}s 1 both`,
+        ["--tx" as string]: "320px",
+        ["--ty" as string]: "190px",
+      }}
+      aria-hidden
+    >
+      <div
+        style={{
+          width: 2,
+          height: 2,
+          background: "#fff",
+          borderRadius: 999,
+          boxShadow: "0 0 6px 2px rgba(255,255,255,0.85)",
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          left: 2,
+          top: 1,
+          width: 120,
+          height: 1,
+          background:
+            "linear-gradient(90deg, rgba(255,255,255,0.9), rgba(255,255,255,0))",
+          transform: "rotate(35deg)",
+          transformOrigin: "left center",
+        }}
+      />
+    </div>
+  );
+}
+
+const stats = [
+  { k: "Jun 6 + 13", v: "Two Saturdays" },
+  { k: "30–40", v: "Students" },
+  { k: "1 wk", v: "Build window" },
+  { k: "Free", v: "No cost" },
+];
+
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
-      {/* Deep gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-background-alt" />
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-background">
+      <Sky />
+      <StarField count={180} />
+      <ShootingStar delay={2} />
+      <ShootingStar delay={6} />
 
-      {/* Subtle radial glow */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px] rounded-full bg-primary/[0.04] blur-3xl" />
-
-      <StarField count={100} />
-
-      {/* Hero constellation art */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="w-full max-w-3xl h-[300px] relative">
-          <HeroConstellation />
-        </div>
-      </div>
-
-      <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 pt-28 pb-20 text-center">
+      <div className="relative z-10 mx-auto max-w-6xl w-full px-4 sm:px-6 lg:px-8 pt-28 pb-20">
+        {/* top dateline */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] as const }}
+          transition={{ duration: 0.6 }}
+          className="flex items-center gap-3 font-[family-name:var(--font-mono)] text-[11px] uppercase tracking-[0.2em] text-text-muted"
         >
-          <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-foreground leading-[1.05] tracking-tight">
-            Build for
-            <span className="block text-primary drop-shadow-[0_0_30px_rgba(245,158,11,0.3)]">
-              someone
-            </span>
-          </h1>
+          <span className="w-8 h-px bg-primary/60" />
+          <span>Lexington · Massachusetts</span>
+          <span className="opacity-40">◦</span>
+          <span>Coords 42.447° N, 71.224° W</span>
         </motion.div>
+
+        {/* Headline */}
+        <motion.h1
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.1, ease: [0.22, 1, 0.36, 1] as const }}
+          className="mt-10 font-[family-name:var(--font-display)] font-normal leading-[0.92] tracking-[-0.03em] text-foreground text-[clamp(3rem,9vw,9rem)]"
+        >
+          Build
+          <br />
+          for{" "}
+          <em className="font-[family-name:var(--font-italic)] italic text-accent">
+            someone
+          </em>
+          .
+        </motion.h1>
 
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] as const }}
-          className="mt-6 sm:mt-8 text-lg sm:text-xl text-text-body max-w-2xl mx-auto leading-relaxed"
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="mt-8 max-w-xl text-lg sm:text-xl text-text-body leading-relaxed"
         >
-          LexHack &rsquo;26 is Lexington&rsquo;s first hackathon.
-          <br />
-          Pick a real person or imagine one. Understand their problem.
-          <br />
-          Spend a week building something just for them.
+          LexHack &rsquo;26 is Lexington&rsquo;s first hackathon. Pick a real
+          person or imagine one. Understand their problem. Spend a week
+          building something just for them.
         </motion.p>
 
+        {/* CTAs */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] as const }}
-          className="mt-8 flex flex-wrap justify-center gap-2 sm:gap-3"
-        >
-          {badges.map((badge) => (
-            <span
-              key={badge.text}
-              className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-text-body bg-card-bg/60 backdrop-blur-sm rounded-full border border-card-border shadow-sm"
-            >
-              <span>{badge.icon}</span>
-              {badge.text}
-            </span>
-          ))}
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.45, ease: [0.22, 1, 0.36, 1] as const }}
-          className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
+          transition={{ duration: 0.8, delay: 0.45 }}
+          className="mt-10 flex flex-wrap gap-4"
         >
           <a
             href="https://forms.gle/32xyrnJxHYpWm1937"
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-2 px-8 py-4 text-lg font-semibold text-background bg-primary hover:bg-primary-dark rounded-full transition-all duration-300 shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-0.5"
+            className="group inline-flex items-center gap-2 px-8 py-4 text-base font-semibold text-background bg-foreground hover:bg-primary rounded-full transition-colors"
           >
-            Register Free
-            <span className="transition-transform duration-300 group-hover:translate-x-1">
-              →
-            </span>
+            Register
+            <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
           </a>
           <a
             href="mailto:lexhackclub@gmail.com"
-            className="inline-flex items-center gap-2 px-8 py-4 text-lg font-semibold text-primary border-2 border-primary/30 hover:border-primary hover:bg-primary/10 rounded-full transition-all duration-300"
+            className="inline-flex items-center gap-2 px-8 py-4 text-base font-semibold text-foreground border border-card-border hover:border-foreground rounded-full transition-colors"
           >
             Become a Sponsor
           </a>
         </motion.div>
 
+        {/* stats row */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.7 }}
+          className="mt-20 grid grid-cols-2 sm:grid-cols-4 gap-6 border-t border-card-border pt-8 max-w-4xl"
+        >
+          {stats.map((s) => (
+            <div key={s.k}>
+              <div className="font-[family-name:var(--font-display)] text-2xl sm:text-3xl font-normal text-foreground tracking-tight">
+                {s.k}
+              </div>
+              <div className="mt-1 font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-[0.2em] text-text-muted">
+                {s.v}
+              </div>
+            </div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );

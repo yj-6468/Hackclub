@@ -1,25 +1,28 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* Constellation Dark Theme */
-  --color-background: #0F172A;
-  --color-background-alt: #1E293B;
-  --color-foreground: #FAFAFA;
-  --color-primary: #C4B5FD;
-  --color-primary-dark: #A78BFA;
-  --color-primary-light: #DDD6FE;
-  --color-accent: #C4B5FD;
-  --color-accent-light: #EDE9FE;
-  --color-text-body: #D4D4D8;
-  --color-text-muted: #A1A1AA;
-  --color-card-bg: #1E293B;
-  --color-card-border: #334155;
-  --color-star: #F5F5F5;
-  --color-line: rgba(245, 245, 245, 0.35);
-  --color-glow: rgba(196, 181, 253, 0.25);
+  /* Night Sky Theme */
+  --color-background: #05070d;
+  --color-background-alt: #0a0d18;
+  --color-foreground: #f0ecea;
+  --color-primary: #c4b5fd;
+  --color-primary-dark: #a78bfa;
+  --color-primary-light: #ddd6fe;
+  --color-accent: #fda4af;
+  --color-accent-cyan: #7dd3fc;
+  --color-accent-amber: #fcd34d;
+  --color-text-body: #d4d0ce;
+  --color-text-muted: #a8a4b8;
+  --color-text-dim: #6b6884;
+  --color-card-bg: rgba(255, 255, 255, 0.03);
+  --color-card-border: rgba(255, 255, 255, 0.08);
+  --color-star: #ffffff;
 
-  --font-display: var(--font-outfit);
-  --font-body: var(--font-dm-sans);
+  --font-display: var(--font-fraunces);
+  --font-italic: var(--font-instrument);
+  --font-mono: var(--font-mono);
+  --font-sans: var(--font-sans);
+  --font-body: var(--font-sans);
 }
 
 html {
@@ -30,58 +33,71 @@ html {
 body {
   background: var(--color-background);
   color: var(--color-foreground);
-  font-family: var(--font-body), system-ui, sans-serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
 }
 
-/* ── Star twinkle keyframes ────────────────────── */
-@keyframes twinkle-slow {
-  0%, 100% { opacity: 0.7; }
-  50% { opacity: 1; }
-}
-@keyframes twinkle-med {
-  0%, 100% { opacity: 0.75; }
-  50% { opacity: 1; }
-}
-@keyframes twinkle-fast {
-  0%, 100% { opacity: 0.7; }
-  50% { opacity: 1; }
-}
+/* Twinkle keyframes */
+@keyframes twinkle-slow { 0%, 100% { opacity: var(--o, 0.5); } 50% { opacity: 1; } }
+@keyframes twinkle-med  { 0%, 100% { opacity: var(--o, 0.4); } 50% { opacity: 0.95; } }
+@keyframes twinkle-fast { 0%, 100% { opacity: var(--o, 0.3); } 50% { opacity: 0.9; } }
 
 .star-twinkle-1 { animation: twinkle-slow 4s ease-in-out infinite; }
 .star-twinkle-2 { animation: twinkle-med 3s ease-in-out infinite; }
 .star-twinkle-3 { animation: twinkle-fast 5s ease-in-out infinite; }
 
-/* ── Constellation line draw ────────────────────── */
+/* Shooting star */
+@keyframes shoot {
+  0% { transform: translate(0, 0); opacity: 0; }
+  5%, 60% { opacity: 1; }
+  100% { transform: translate(var(--tx, 300px), var(--ty, 180px)) scale(0.6); opacity: 0; }
+}
+
+/* Nebula drift */
+@keyframes nebula-drift {
+  0% { transform: translate(-50%, -50%) rotate(0) scale(1); }
+  50% { transform: translate(-50%, -50%) rotate(180deg) scale(1.08); }
+  100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); }
+}
+
+/* Aurora */
+@keyframes aurora {
+  0%, 100% { opacity: 0.5; transform: translateX(0) scaleY(1); }
+  50%      { opacity: 0.9; transform: translateX(-30px) scaleY(1.15); }
+}
+
+/* Gradient drift */
+@keyframes grad-drift {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+
+/* Constellation line draw */
 @keyframes draw-line {
-  from { stroke-dashoffset: 1; }
-  to { stroke-dashoffset: 0; }
+  from { stroke-dashoffset: 100%; }
+  to   { stroke-dashoffset: 0; }
 }
 
-.constellation-line {
-  stroke: var(--color-line);
-  stroke-width: 1.5;
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-  animation: draw-line 2s ease-out forwards;
+/* Slow dash stream (for connecting lines) */
+@keyframes dash-stream {
+  to { stroke-dashoffset: -20; }
 }
 
-/* ── Star glow ────────────────────── */
+/* Star glow */
 .star-glow {
-  box-shadow: 0 0 8px 3px rgba(245, 245, 245, 0.5);
+  box-shadow: 0 0 8px 3px rgba(255, 255, 255, 0.5);
 }
 
-.gold-glow {
-  box-shadow: 0 0 20px 4px var(--color-glow), 0 0 60px 12px rgba(196, 181, 253, 0.08);
+.primary-glow {
+  box-shadow: 0 0 20px 4px rgba(196, 181, 253, 0.25), 0 0 60px 12px rgba(196, 181, 253, 0.08);
 }
 
-/* ── Custom scrollbar ────────────────────── */
+/* Scrollbar */
 ::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: #0F172A; }
-::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: #475569; }
+::-webkit-scrollbar-track { background: #05070d; }
+::-webkit-scrollbar-thumb { background: #2a2640; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #3b3660; }
 
-/* ── Selection color ────────────────────── */
 ::selection {
   background: rgba(196, 181, 253, 0.3);
-  color: #FAFAFA;
+  color: #f0ecea;
 }
