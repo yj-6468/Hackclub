@@ -64,19 +64,23 @@ function Sky() {
 /** Periodic diagonal shooting star. */
 function ShootingStar({ delay = 0 }: { delay?: number }) {
   const [key, setKey] = useState(0);
+  const [pos, setPos] = useState<{ x: number; y: number } | null>(null);
   useEffect(() => {
-    const id = setInterval(() => setKey((k) => k + 1), 11000);
+    setPos({ x: 10 + Math.random() * 60, y: 10 + Math.random() * 30 });
+    const id = setInterval(() => {
+      setPos({ x: 10 + Math.random() * 60, y: 10 + Math.random() * 30 });
+      setKey((k) => k + 1);
+    }, 11000);
     return () => clearInterval(id);
   }, []);
-  const x = 10 + Math.random() * 60;
-  const y = 10 + Math.random() * 30;
+  if (!pos) return null;
   return (
     <div
       key={key}
       className="absolute pointer-events-none"
       style={{
-        left: `${x}%`,
-        top: `${y}%`,
+        left: `${pos.x}%`,
+        top: `${pos.y}%`,
         animation: `shoot 2.4s ease-out ${delay}s 1 both`,
         ["--tx" as string]: "320px",
         ["--ty" as string]: "190px",
