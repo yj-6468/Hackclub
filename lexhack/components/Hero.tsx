@@ -138,6 +138,21 @@ export default function Hero() {
           </a>
         </motion.div>
 
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.55 }}
+          className="mt-5 max-w-xl text-sm text-text-muted leading-relaxed"
+        >
+          <p>
+            High school students only (grades 9–12, ages 14–18). Free to attend.
+          </p>
+          <p className="mt-1.5">
+            After you register, you&rsquo;ll get a confirmation email with Day 1
+            details, the Discord invite, and the Devpost submission deadline.
+          </p>
+        </motion.div>
+
         {/* stats row */}
         <motion.div
           initial={{ opacity: 0 }}

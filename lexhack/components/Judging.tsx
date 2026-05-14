@@ -5,10 +5,9 @@ import { useRef } from "react";
 import StarField from "./StarField";
 
 const criteria = [
-  { label: "Impact / Usefulness", weight: 30, color: "#c4b5fd" },
-  { label: "Technical Execution", weight: 25, color: "#7dd3fc" },
-  { label: "Creativity", weight: 20, color: "#fda4af" },
-  { label: "Design / UX", weight: 15, color: "#fcd34d" },
+  { label: "Impact / Usefulness", weight: 40, color: "#c4b5fd" },
+  { label: "Technical Execution", weight: 30, color: "#7dd3fc" },
+  { label: "Creativity + Design", weight: 20, color: "#fda4af" },
   { label: "Presentation", weight: 10, color: "#a5f3fc" },
 ];
 
@@ -56,10 +55,9 @@ export default function Judging() {
                 Scoring
               </div>
               <p className="text-text-body leading-relaxed">
-                Final scores:{" "}
-                <strong className="text-foreground">60% from 4 judges</strong> +{" "}
-                <strong className="text-foreground">40% participant vote</strong>.
-                You can&rsquo;t vote for yourself.
+                <strong className="text-foreground">Judges determine all award rankings.</strong>{" "}
+                Participant votes only decide the People&rsquo;s Choice award.
+                Participants cannot vote for their own team.
               </p>
             </div>
           </motion.div>
@@ -89,7 +87,7 @@ export default function Judging() {
                   <div className="h-[3px] bg-white/5 rounded-full overflow-hidden">
                     <motion.div
                       initial={{ width: 0 }}
-                      animate={isInView ? { width: `${item.weight * 3.33}%` } : { width: 0 }}
+                      animate={isInView ? { width: `${item.weight * 2.5}%` } : { width: 0 }}
                       transition={{ delay: 0.4 + i * 0.08, duration: 0.8, ease: [0.22, 1, 0.36, 1] as const }}
                       className="h-full rounded-full"
                       style={{ background: item.color, maxWidth: "100%" }}
