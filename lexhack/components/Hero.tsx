@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
 import StarField from "./StarField";
 
 /** Multi-layer nebula + milky-way background. */
@@ -61,58 +60,6 @@ function Sky() {
   );
 }
 
-/** Periodic diagonal shooting star. */
-function ShootingStar({ delay = 0 }: { delay?: number }) {
-  const [key, setKey] = useState(0);
-  const [pos, setPos] = useState<{ x: number; y: number } | null>(null);
-  useEffect(() => {
-    setPos({ x: 10 + Math.random() * 60, y: 10 + Math.random() * 30 });
-    const id = setInterval(() => {
-      setPos({ x: 10 + Math.random() * 60, y: 10 + Math.random() * 30 });
-      setKey((k) => k + 1);
-    }, 11000);
-    return () => clearInterval(id);
-  }, []);
-  if (!pos) return null;
-  return (
-    <div
-      key={key}
-      className="absolute pointer-events-none"
-      style={{
-        left: `${pos.x}%`,
-        top: `${pos.y}%`,
-        animation: `shoot 2.4s ease-out ${delay}s 1 both`,
-        ["--tx" as string]: "320px",
-        ["--ty" as string]: "190px",
-      }}
-      aria-hidden
-    >
-      <div
-        style={{
-          width: 2,
-          height: 2,
-          background: "#fff",
-          borderRadius: 999,
-          boxShadow: "0 0 6px 2px rgba(255,255,255,0.85)",
-        }}
-      />
-      <div
-        style={{
-          position: "absolute",
-          left: 2,
-          top: 1,
-          width: 120,
-          height: 1,
-          background:
-            "linear-gradient(90deg, rgba(255,255,255,0.9), rgba(255,255,255,0))",
-          transform: "rotate(35deg)",
-          transformOrigin: "left center",
-        }}
-      />
-    </div>
-  );
-}
-
 const stats = [
   { k: "Jun 6 + 13", v: "Two Saturdays" },
   { k: "30–40", v: "Students" },
@@ -125,8 +72,6 @@ export default function Hero() {
     <section className="relative min-h-screen flex items-center overflow-hidden bg-background">
       <Sky />
       <StarField count={180} />
-      <ShootingStar delay={2} />
-      <ShootingStar delay={6} />
 
       <div className="relative z-10 mx-auto max-w-6xl w-full px-4 sm:px-6 lg:px-8 pt-28 pb-20">
         {/* top dateline */}
