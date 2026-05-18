@@ -60,6 +60,19 @@ export default function Judging() {
                 Participants cannot vote for their own team.
               </p>
             </div>
+            <div className="p-6 bg-card-bg backdrop-blur-sm rounded-2xl border border-card-border">
+              <div className="font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-[0.2em] text-primary mb-2">
+                How judging works
+              </div>
+              <p className="text-text-body leading-relaxed">
+                <strong className="text-foreground">4 judges total.</strong>{" "}
+                Each judge reviews 2&ndash;3 projects from Devpost submissions
+                &mdash; not every judge sees every project. Judges score before
+                Day 2 presentations, in the window between Friday 6/12 10 PM
+                (submission deadline) and Saturday 10 AM (presentations begin).
+                The Presentation category (10%) is scored live on Day 2.
+              </p>
+            </div>
           </motion.div>
 
           <motion.div

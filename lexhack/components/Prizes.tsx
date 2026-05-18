@@ -21,20 +21,8 @@ const prizes = [
     tint: "#c4b5fd",
   },
   {
-    title: "Best First-Time Hacker",
-    description: "Remarkable first hackathon, first project, first step.",
-    magnitude: "M 1.4",
-    tint: "#7dd3fc",
-  },
-  {
-    title: "Best Presentation",
-    description: "The demo that had the whole room engaged.",
-    magnitude: "M 1.6",
-    tint: "#fda4af",
-  },
-  {
     title: "People's Choice",
-    description: "Voted by all participants.",
+    description: "Decided by participant vote only.",
     magnitude: "M 1.8",
     tint: "#a5f3fc",
   },
@@ -67,7 +55,7 @@ export default function Prizes() {
             <em className="font-[family-name:var(--font-italic)] italic text-accent">Prizes</em>.
           </h2>
           <p className="mt-6 text-lg text-text-body">
-            Recognition for outstanding work across five categories.
+            Three awards. Judges decide the Grand Prize and Most Creative; participants decide People&rsquo;s Choice.
           </p>
         </motion.div>
 
