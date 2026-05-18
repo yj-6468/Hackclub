@@ -4,52 +4,16 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import StarField from "./StarField";
 
+const sponsors = [
+  { name: "Endstack", logo: "/sponsors/endstack.png", url: null },
+  { name: "Codewisp", logo: "/sponsors/codewisp.png", url: null },
+];
+
 const communityPartners = [
   { name: "Hack Club", url: "https://hackclub.com" },
   { name: "The Hack Foundation", url: "https://hackclub.com" },
   { name: "Lexington Community Center", url: null },
 ];
-
-function SlotRow({
-  label,
-  count,
-  height,
-  width,
-  tint,
-}: {
-  label: string;
-  count: number;
-  height: number;
-  width: number;
-  tint: string;
-}) {
-  return (
-    <div>
-      <div className="text-center font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-[0.2em] text-text-muted mb-5">
-        {label}
-      </div>
-      <div className="flex flex-wrap justify-center gap-4">
-        {Array.from({ length: count }).map((_, n) => (
-          <div
-            key={n}
-            className="relative rounded-2xl border border-dashed flex items-center justify-center overflow-hidden"
-            style={{
-              width,
-              height,
-              borderColor: tint,
-              background: `${tint}10`,
-            }}
-          >
-            <StarField count={6} />
-            <span className="relative z-10 text-xs font-[family-name:var(--font-mono)] uppercase tracking-[0.15em] text-text-muted">
-              Your logo here
-            </span>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
 
 export default function Sponsors() {
   const ref = useRef(null);
@@ -88,23 +52,36 @@ export default function Sponsors() {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ delay: 0.1, duration: 0.6 }}
           >
-            <SlotRow label="Title Sponsor" count={1} height={120} width={280} tint="#fcd34d" />
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-          >
-            <SlotRow label="Gold Sponsors" count={2} height={88} width={210} tint="#c4b5fd" />
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
-          >
-            <SlotRow label="Silver Sponsors" count={3} height={72} width={160} tint="#7dd3fc" />
+            <div className="text-center font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-[0.2em] text-text-muted mb-5">
+              Sponsors
+            </div>
+            <div className="flex flex-wrap justify-center gap-6">
+              {sponsors.map((sponsor) => {
+                const Tag = sponsor.url ? "a" : "div";
+                const linkProps = sponsor.url
+                  ? { href: sponsor.url, target: "_blank" as const, rel: "noopener noreferrer" }
+                  : {};
+                return (
+                  <Tag
+                    key={sponsor.name}
+                    {...linkProps}
+                    className={`relative w-[220px] h-[150px] rounded-2xl bg-card-bg border border-card-border flex flex-col items-center justify-center gap-3 px-4 overflow-hidden ${
+                      sponsor.url ? "hover:border-white/30 transition-colors" : ""
+                    }`}
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={sponsor.logo}
+                      alt={`${sponsor.name} logo`}
+                      className="max-w-[60%] max-h-[60px] object-contain"
+                    />
+                    <span className="font-[family-name:var(--font-display)] text-base text-foreground">
+                      {sponsor.name}
+                    </span>
+                  </Tag>
+                );
+              })}
+            </div>
           </motion.div>
 
           {/* Community Partners */}
