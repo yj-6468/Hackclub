@@ -6,9 +6,9 @@ import StarField from "./StarField";
 
 const faqs = [
   { q: "What is a hackathon?", a: "A collaborative event where you build a software project from scratch. No prior experience needed." },
-  { q: "Who can participate?", a: "LexHack is open to high school students only (grades 9–12, ages 14–18, US-based). Teams of 2–4, and you can team up with students from other schools." },
+  { q: "Who can participate?", a: "LexHack is open to high school students only (grades 9–12, US-based). Teams of 2–4, and you can team up with students from other schools." },
   { q: "Do I need coding experience?", a: "No! Beginners welcome. Workshops and helpers will help you get started." },
-  { q: "What happens after I register?", a: "You'll get a confirmation email within a few minutes. It contains Day 1 logistics, the Discord invite, the Devpost link, the June 12, 10 PM EST submission deadline, and a reminder about the Code of Conduct. A reminder email also goes out the Thursday before Day 1." },
+  { q: "What happens after I register?", a: "You'll receive a confirmation email in few days. It contains Day 1 logistics, the Discord invite, the Devpost link, the June 12, 10 PM EST submission deadline, and a reminder about the Code of Conduct. A reminder email also goes out the Thursday before Day 1." },
   { q: "Do I have to find a real person to build for?", a: "No. You can build for someone you know (Path A) or create a realistic persona representing someone who would benefit from your tool (Path B). Both are equally valid." },
   { q: "What if I want to bring my person to the event?", a: "They're welcome! If your person wants to show up on Day 1, Day 2, or both, that's great. But it's not required." },
   { q: "How do teams work?", a: "Teams of 2–4. Come with a team or form one at the event." },

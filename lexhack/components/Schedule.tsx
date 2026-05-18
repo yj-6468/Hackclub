@@ -42,7 +42,7 @@ const scheduleData: Record<TabKey, { time: string; event: string; highlight?: bo
     { time: "12:15 PM", event: "Lunch (Panera)" },
     { time: "12:45 PM", event: "Participant voting for People's Choice (Google Form, 10 min)" },
     { time: "1:00 PM", event: "Score tallying. Photo slideshow." },
-    { time: "1:30 PM", event: "Closing Ceremony: awards, sponsor thanks, group photo", highlight: true },
+    { time: "1:30 PM", event: "Closing Ceremony: People's Choice → Most Creative → Grand Prize, sponsor thanks, group photo", highlight: true },
     { time: "2:00 PM", event: "Event ends, cleanup" },
   ],
 };
