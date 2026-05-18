@@ -145,7 +145,7 @@ export default function Hero() {
           className="mt-5 max-w-xl text-sm text-text-muted leading-relaxed"
         >
           <p>
-            High school students only (grades 9–12, ages 14–18). Free to attend.
+            US based High school students only (grades 9–12). Free to attend.
           </p>
           <p className="mt-1.5">
             After you register, you&rsquo;ll get a confirmation email with Day 1
