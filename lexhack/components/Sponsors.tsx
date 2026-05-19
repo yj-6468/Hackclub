@@ -5,8 +5,8 @@ import { useRef } from "react";
 import StarField from "./StarField";
 
 const sponsors = [
-  { name: "Endstack", logo: "/sponsors/endstack.png", url: null },
-  { name: "Codewisp", logo: "/sponsors/codewisp.png", url: null },
+  { name: "Endstack", logo: "/sponsors/endstack.png", url: "https://www.endstack.com/" },
+  { name: "Codewisp", logo: "/sponsors/codewisp.png", url: "https://codewisp.ai/" },
 ];
 
 const communityPartners = [
