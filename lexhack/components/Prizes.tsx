@@ -9,21 +9,20 @@ const prizes = [
     title: "Grand Prize",
     description:
       "Best combination of real-world impact and technical execution.",
-    note: "Grand Prize TBA",
-    magnitude: "M 0.0",
+    amount: "$400",
     tint: "#fcd34d",
     featured: true,
   },
   {
     title: "Most Creative Solution",
     description: "Unexpected approach to the problem.",
-    magnitude: "M 1.2",
+    amount: "$200",
     tint: "#c4b5fd",
   },
   {
     title: "People's Choice",
     description: "Decided by participant vote only.",
-    magnitude: "M 1.8",
+    amount: "$100",
     tint: "#a5f3fc",
   },
 ];
@@ -87,8 +86,8 @@ export default function Prizes() {
               </div>
 
               <div className="mt-4 flex items-baseline justify-between font-[family-name:var(--font-mono)] text-[11px] uppercase tracking-[0.2em] text-text-muted">
-                <span>Magnitude</span>
-                <span style={{ color: prize.tint }}>{prize.magnitude}</span>
+                <span>Prize</span>
+                <span className="text-base font-bold" style={{ color: prize.tint }}>{prize.amount}</span>
               </div>
               <div className="mt-3 h-px bg-card-border" />
 
@@ -98,11 +97,6 @@ export default function Prizes() {
               <p className="mt-3 text-text-body leading-relaxed">
                 {prize.description}
               </p>
-              {prize.note && (
-                <p className="mt-4 font-[family-name:var(--font-mono)] text-[11px] uppercase tracking-[0.15em]" style={{ color: prize.tint }}>
-                  {prize.note}
-                </p>
-              )}
             </motion.div>
           ))}
         </div>
