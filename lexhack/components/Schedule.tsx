@@ -29,7 +29,7 @@ const scheduleData: Record<TabKey, { time: string; event: string; highlight?: bo
   buildweek: [
     { time: "Sun Jun 7", event: "Get set up. Create repo, push first commit, start building." },
     { time: "Mon Jun 8", event: "Build day." },
-    { time: "Tue Jun 9", event: "Build day. Real-person teams: share early prototype." },
+    { time: "Tue Jun 9", event: "Build day." },
     { time: "Wed Jun 10", event: "Build day. Halfway point." },
     { time: "Thu Jun 11", event: "Build day. Start prepping your 5-min demo." },
     { time: "Fri Jun 12", event: "Final build day." },
@@ -40,9 +40,9 @@ const scheduleData: Record<TabKey, { time: string; event: string; highlight?: bo
     { time: "9:30 AM", event: "Welcome back, run-of-show, presentation order, technical setup" },
     { time: "10:00 AM", event: "Presentations begin (7 min per team: 5 min demo + 2 min Q&A)", highlight: true },
     { time: "12:15 PM", event: "Lunch (Panera)" },
-    { time: "12:45 PM", event: "Participant voting for People's Choice (Google Form, 10 min)" },
+    { time: "12:45 PM", event: "Participant voting for People's Choice" },
     { time: "1:00 PM", event: "Score tallying. Photo slideshow." },
-    { time: "1:30 PM", event: "Closing Ceremony: People's Choice → Most Creative → Grand Prize, sponsor thanks, group photo", highlight: true },
+    { time: "1:30 PM", event: "Closing Ceremony: People's Choice → Second Place → First Place, sponsor thanks, group photo", highlight: true },
     { time: "2:00 PM", event: "Event ends, cleanup" },
   ],
 };

@@ -83,8 +83,8 @@ export default function About() {
             variants={fadeUp}
             className="mt-8 max-w-3xl text-lg text-text-body leading-relaxed"
           >
-            Every team picks one real person &mdash; someone they know, or a
-            realistic persona &mdash; and builds a tool for their specific
+            Every team picks one real person (someone they know, or a
+            realistic persona), and builds a tool for their specific
             problem. The project has a real user before a single line of code
             is written.
           </motion.p>
@@ -111,10 +111,7 @@ export default function About() {
               body={
                 <>
                   Don&rsquo;t have a specific person? That&rsquo;s fine. Define
-                  a realistic persona &mdash; &ldquo;a college student who can
-                  never find study rooms&rdquo; or &ldquo;an elderly person who
-                  struggles with grocery apps.&rdquo; Ground it in reality. The
-                  more specific the person feels, the better the project.
+                  a realistic persona. The more specific the person feels, the better the project.
                 </>
               }
             />

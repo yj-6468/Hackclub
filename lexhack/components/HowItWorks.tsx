@@ -20,7 +20,7 @@ const steps: Step[] = [
     dateLabel: "Sat Jun 6",
     location: "Community Center · 9 AM – 2 PM",
     description:
-      "Pick who you're building for. Already have someone? Call or text them to interview. Building for a persona? Sketch out their life and frustrations.",
+      "Pick who you're building for. Identify their problem and start building something for them.",
     constellation: [
       [20, 15],
       [30, 25],
@@ -49,7 +49,7 @@ const steps: Step[] = [
     dateLabel: "Sat Jun 13",
     location: "Community Center · 9 AM – 2 PM",
     description:
-      "Submit on Devpost by Friday, June 12 at 10:00 PM EST. On Day 2, present your project, explain who your person is, and show the working product. If your person came — they join you on stage. If not — share their reaction. Judges score every team; participants vote for People's Choice.",
+      "Submit on Devpost by Friday, June 12 at 10:00 PM EST. On Day 2, present your project, explain who your person is, and show the working product. Judges score every team and participants vote for People's Choice award.",
     constellation: [
       [12, 10],
       [25, 5],

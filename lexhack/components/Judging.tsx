@@ -46,8 +46,8 @@ export default function Judging() {
               </div>
               <p className="text-text-body leading-relaxed">
                 Every team presents for{" "}
-                <strong className="text-foreground">7 minutes</strong>: 5-minute
-                demo + 2-minute Q&amp;A from judges.
+                <strong className="text-foreground">7 minutes</strong>: 5 minute
+                demo + 2 minute Q&amp;A from other participants/judges.
               </p>
             </div>
             <div className="p-6 bg-card-bg backdrop-blur-sm rounded-2xl border border-card-border">
@@ -55,7 +55,7 @@ export default function Judging() {
                 Scoring
               </div>
               <p className="text-text-body leading-relaxed">
-                <strong className="text-foreground">Judges determine all award rankings.</strong>{" "}
+                <strong className="text-foreground">Judges determine award rankings for First Place and Second Place.</strong>{" "}
                 Participant votes only decide the People&rsquo;s Choice award.
                 Participants cannot vote for their own team.
               </p>
@@ -65,12 +65,13 @@ export default function Judging() {
                 How judging works
               </div>
               <p className="text-text-body leading-relaxed">
-                <strong className="text-foreground">4 judges total.</strong>{" "}
-                Each judge reviews 2&ndash;3 projects from Devpost submissions
-                &mdash; not every judge sees every project. Judges score before
-                Day 2 presentations, in the window between Friday 6/12 10 PM
-                (submission deadline) and Saturday 10 AM (presentations begin).
-                The Presentation category (10%) is scored live on Day 2.
+                <strong className="text-foreground">
+                  Judges review projects from Devpost submissions, including
+                  the demo video, code, and write-up.
+                </strong>{" "}
+                Scoring happens in the
+                window between Friday 6/12 10 PM (submission deadline) and
+                Saturday 10 AM (presentations begin).
               </p>
             </div>
           </motion.div>
