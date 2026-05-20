@@ -63,7 +63,7 @@ function Sky() {
 const stats = [
   { k: "Jun 6 + 13", v: "Two Saturdays" },
   { k: "30–40", v: "Students" },
-  { k: "1 wk", v: "Build window" },
+  { k: "1 week", v: "Build window" },
   { k: "Free", v: "No cost" },
 ];
 

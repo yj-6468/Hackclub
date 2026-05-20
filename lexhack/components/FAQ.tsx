@@ -14,7 +14,7 @@ const faqs = [
   { q: "How do teams work?", a: "Teams of 2–4. Come with a team or form one at the event. Working alone is also an option but we encourage forming a team." },
   { q: "What should I bring?", a: "Laptop and charger. We provide food, WiFi, and everything else." },
   { q: "Is it really free?", a: "Yes, completely." },
-  { q: "Do I need to be available all week?", a: "No. The build week is flexible — work at your own pace. Organizers are available as helpers in Discord throughout Build Week. Drop questions in the help channels anytime — debugging, scope advice, demo prep, anything. No scheduled check-ins; just ask when you need help." },
+  { q: "Do I need to be available all week?", a: "No. The build week is flexible so you can work at your own pace. Drop questions in the Question channel anytime. No scheduled check-ins; just ask if you need help." },
   { q: "When are projects due?", a: "Submissions close on Devpost on Friday, June 12 at 10:00 PM EST. This is a hard deadline and late submissions are not accepted. Day 2 (June 13) is presentations and awards only, so make sure your project is fully submitted before Friday night." },
   { q: "Is AI allowed?", a: "Yes. AI is fully allowed and encouraged. AI tools are part of how people build software now. Use any tools you want. Teams that use AI thoughtfully might score higher as well." },
   { q: "Where is the hackathon?", a: "Both days are at the Lexington Community Center, 39 Marrett Rd, Lexington, MA 02421. Same venue, same time (9 AM–2 PM) both Saturdays." },

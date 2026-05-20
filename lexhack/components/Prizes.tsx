@@ -6,7 +6,7 @@ import StarField from "./StarField";
 
 const prizes = [
   {
-    title: "Grand Prize",
+    title: "First Place",
     description:
       "Best combination of real-world impact and technical execution.",
     amount: "$400",
@@ -14,8 +14,8 @@ const prizes = [
     featured: true,
   },
   {
-    title: "Most Creative Solution",
-    description: "Unexpected approach to the problem.",
+    title: "Second Place",
+    description: "Second-highest score on the judging rubric.",
     amount: "$200",
     tint: "#c4b5fd",
   },
@@ -54,7 +54,7 @@ export default function Prizes() {
             <em className="font-[family-name:var(--font-italic)] italic text-accent">Prizes</em>.
           </h2>
           <p className="mt-6 text-lg text-text-body">
-            Three awards. Judges decide the Grand Prize and Most Creative; participants decide People&rsquo;s Choice.
+            Three awards. Judges decide First and Second Place; participants decide People&rsquo;s Choice.
           </p>
         </motion.div>
 
