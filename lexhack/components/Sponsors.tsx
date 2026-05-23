@@ -6,7 +6,7 @@ import StarField from "./StarField";
 
 const sponsors = [
   { name: "Endstack", logo: "/sponsors/endstack.png", url: "https://www.endstack.com/" },
-  { name: "Codewisp", logo: "/sponsors/codewisp.png", url: "https://codewisp.ai/" },
+  { name: "Codewisp", logo: "/sponsors/codewisp%20logo.png", url: "https://codewisp.ai/" },
 ];
 
 const communityPartners = [
@@ -65,16 +65,18 @@ export default function Sponsors() {
                   <Tag
                     key={sponsor.name}
                     {...linkProps}
-                    className={`relative w-[220px] h-[150px] rounded-2xl bg-card-bg border border-card-border flex flex-col items-center justify-center gap-3 px-4 overflow-hidden ${
+                    className={`relative w-[220px] h-[170px] rounded-2xl bg-card-bg border border-card-border flex flex-col items-center justify-center gap-3 px-4 py-4 overflow-hidden ${
                       sponsor.url ? "hover:border-white/30 transition-colors" : ""
                     }`}
                   >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={sponsor.logo}
-                      alt={`${sponsor.name} logo`}
-                      className="max-w-[60%] max-h-[60px] object-contain"
-                    />
+                    <div className="flex items-center justify-center w-[160px] h-[80px] rounded-xl bg-white">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={sponsor.logo}
+                        alt={`${sponsor.name} logo`}
+                        className="max-w-[85%] max-h-[70%] object-contain"
+                      />
+                    </div>
                     <span className="font-[family-name:var(--font-display)] text-base text-foreground">
                       {sponsor.name}
                     </span>
