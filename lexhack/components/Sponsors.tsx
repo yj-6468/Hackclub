@@ -7,6 +7,7 @@ import StarField from "./StarField";
 const sponsors = [
   { name: "Endstack", logo: "/sponsors/endstack.png", url: "https://www.endstack.com/" },
   { name: "Codewisp", logo: "/sponsors/codewisp%20logo.png", url: "https://codewisp.ai/" },
+  { name: "Featherless AI", logo: "/sponsors/featherless.svg", url: "https://featherless.ai/" },
 ];
 
 const communityPartners = [
