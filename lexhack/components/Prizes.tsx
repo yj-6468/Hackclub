@@ -8,7 +8,7 @@ const prizes = [
   {
     title: "First Place",
     description:
-      "Best combination of real-world impact and technical execution. Awarded as a $400 Amazon gift card.",
+      "Best combination of real-world impact and technical execution. Awarded as $400 cash.",
     amount: "$400",
     tint: "#fcd34d",
     featured: true,
@@ -16,13 +16,13 @@ const prizes = [
   {
     title: "Second Place",
     description:
-      "Second-highest score on the judging rubric. Awarded as a $100 Amazon gift card + $300 in Featherless credits.",
+      "Second-highest score on the judging rubric. Awarded as $100 cash + $300 in Featherless credits.",
     amount: "$400 value",
     tint: "#c4b5fd",
   },
   {
     title: "People's Choice",
-    description: "Decided by participant vote only. Awarded as a $100 Amazon gift card.",
+    description: "Decided by participant vote only. Awarded as $100 cash.",
     amount: "$100",
     tint: "#a5f3fc",
   },
@@ -58,7 +58,7 @@ export default function Prizes() {
             Three awards. Judges decide First and Second Place; participants decide People&rsquo;s Choice.
           </p>
           <p className="mt-3 font-[family-name:var(--font-mono)] text-[11px] uppercase tracking-[0.2em] text-text-muted">
-            Prize pool: $600 in Amazon gift cards + $300 in Featherless credits
+            Prize pool: $600 cash + $300 in Featherless credits
           </p>
         </motion.div>
 

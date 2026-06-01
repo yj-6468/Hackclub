@@ -166,9 +166,6 @@ export default function HowItWorks() {
             How it{" "}
             <em className="font-[family-name:var(--font-italic)] italic text-accent">works</em>.
           </h2>
-          <p className="mt-6 text-lg text-text-body">
-            Two Saturdays. One week. One person&rsquo;s problem, solved.
-          </p>
         </motion.div>
 
         <div className="mt-16 grid md:grid-cols-3 gap-6">

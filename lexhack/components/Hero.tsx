@@ -83,8 +83,6 @@ export default function Hero() {
         >
           <span className="w-8 h-px bg-primary/60" />
           <span>Lexington · Massachusetts</span>
-          <span className="opacity-40">◦</span>
-          <span>Coords 42.447° N, 71.224° W</span>
         </motion.div>
 
         {/* Headline */}
@@ -122,9 +120,7 @@ export default function Hero() {
           className="mt-10 flex flex-wrap gap-4"
         >
           <a
-            href="https://forms.gle/32xyrnJxHYpWm1937"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/closed"
             className="group inline-flex items-center gap-2 px-8 py-4 text-base font-semibold text-background bg-foreground hover:bg-primary rounded-full transition-colors"
           >
             Register

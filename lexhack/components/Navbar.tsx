@@ -69,9 +69,7 @@ export default function Navbar() {
                 </a>
               ))}
               <a
-                href="https://forms.gle/32xyrnJxHYpWm1937"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/closed"
                 className="ml-4 inline-flex items-center px-5 py-2.5 text-sm font-semibold text-background bg-foreground hover:bg-primary rounded-full transition-all duration-200 shadow-sm"
               >
                 Register
@@ -137,9 +135,7 @@ export default function Navbar() {
                   </motion.a>
                 ))}
                 <motion.a
-                  href="https://forms.gle/32xyrnJxHYpWm1937"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="/closed"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}

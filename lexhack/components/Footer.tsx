@@ -107,12 +107,9 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-16 pt-6 border-t border-card-border flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div className="mt-16 pt-6 border-t border-card-border flex items-center justify-center">
           <p className="font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-[0.2em] text-text-dim">
             © 2026 LexHack
-          </p>
-          <p className="font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-[0.2em] text-text-dim">
-            Lat 42.447° · Lon 71.224°
           </p>
         </div>
       </div>
