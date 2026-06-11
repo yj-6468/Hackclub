@@ -33,7 +33,8 @@ const scheduleData: Record<TabKey, { time: string; event: string; highlight?: bo
     { time: "Fri 10 PM", event: "HARD Devpost submission deadline. Late submissions not accepted.", highlight: true },
   ],
   day2: [
-    { time: "9:00 AM", event: "Doors open, check-in. Teams pick up presentation slot numbers." },
+    { time: "9:00 AM", event: "Organizers arrive, setup" },
+    { time: "9:30 AM", event: "Doors open, check-in. Teams pick up presentation slot numbers." },
     { time: "9:30 AM", event: "Welcome back, presentation order, technical setup" },
     { time: "10:00 AM", event: "Presentations begin (7 min per team: 5 min demo + 2 min Q&A)", highlight: true },
     { time: "12:00 PM", event: "Lunch " },
