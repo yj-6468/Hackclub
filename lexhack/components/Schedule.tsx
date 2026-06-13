@@ -37,7 +37,7 @@ const scheduleData: Record<TabKey, { time: string; event: string; highlight?: bo
     { time: "10:00 AM", event: "Presentations — Part 1", highlight: true },
     { time: "11:00 AM", event: "Break (snacks)" },
     { time: "11:20 AM", event: "Presentations — Part 2", highlight: true },
-    { time: "12:00 PM", event: "Lunch & participant voting (Google Form)" },
+    { time: "12:00 PM", event: "More snacks & participant voting (Google Form)" },
     { time: "12:30 PM", event: "Voting closes" },
     { time: "1:00 PM", event: "Winners, prizes & group photo (be back at this room by 12:50)" },
     { time: "2:00 PM", event: "LexHack '26 ends" },
