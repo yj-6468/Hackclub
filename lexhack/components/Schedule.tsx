@@ -33,14 +33,14 @@ const scheduleData: Record<TabKey, { time: string; event: string; highlight?: bo
     { time: "Fri 10 PM", event: "HARD Devpost submission deadline. Late submissions not accepted.", highlight: true },
   ],
   day2: [
-    { time: "9:00 AM", event: "Organizers arrive, setup" },
-    { time: "9:30 AM", event: "Doors open, check-in. Teams pick up presentation slot numbers." },
-    { time: "9:30 AM", event: "Welcome back, presentation order, technical setup" },
-    { time: "10:00 AM", event: "Presentations begin (7 min per team: 5 min demo + 2 min Q&A)", highlight: true },
-    { time: "12:00 PM", event: "Lunch " },
-    { time: "1:00 PM", event: "Participant voting for People's Choice" },
-    { time: "1:15 PM", event: "Closing Ceremony: People's Choice → Second Place → First Place, sponsor thanks, group photo", highlight: true },
-    { time: "2:00 PM", event: "Event ends, cleanup" },
+    { time: "9:30 AM", event: "Check-in" },
+    { time: "10:00 AM", event: "Presentations — Part 1", highlight: true },
+    { time: "11:00 AM", event: "Break (snacks)" },
+    { time: "11:20 AM", event: "Presentations — Part 2", highlight: true },
+    { time: "12:00 PM", event: "Lunch & participant voting (Google Form)" },
+    { time: "12:30 PM", event: "Voting closes" },
+    { time: "1:00 PM", event: "Winners, prizes & group photo (be back at this room by 12:50)" },
+    { time: "2:00 PM", event: "LexHack '26 ends" },
   ],
 };
 
